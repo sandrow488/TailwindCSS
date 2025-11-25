@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parte 8 — Utilidades más usadas</title>
+    <link href="/src/style.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-950 dark:text-gray-100">
+
+    <header class="max-w-5xl mx-auto p-4 flex items-center justify-between">
+      <a class="text-xl font-bold text-brand" href="/">Tailwind v4.1 — Tutorial</a>
+      <div class="md:hidden">
+        <button id="menu-btn" class="text-gray-600 hover:text-gray-800 focus:outline-none">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+      <nav id="menu" class="hidden md:flex text-sm flex-col md:flex-row items-center">
+        <a class="px-2 py-1 md:py-0 hover:underline" href="/index.html">Index</a>
+        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte1.html">Parte 1</a>
+        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte2.html">Parte 2</a>
+        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte3.html">Parte 3</a>
+        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte4.html">Parte 4</a>
+        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte5.html">Parte 5</a>
+        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte6.html">Parte 6</a>
+        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte7.html">Parte 7</a>
+        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte8.html">Parte 8</a>
+        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte9.html">Parte 9</a>
+        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte10.html">Parte 10</a>
+      </nav>
+    </header>
+
+    <main class="max-w-5xl mx-auto p-4 space-y-8">
+        <h1 class="text-3xl font-bold">Las utilidades más usadas en Tailwind CSS v4.1</h1>
+        <p class="mt-2 text-gray-600 dark:text-gray-300">Estructura, espaciado, texto, colores, y comportamiento responsive.</p>
+        <p class="mt-2 text-gray-600 dark:text-gray-300">En esta parte nos detenemos en las utilidades que más vas a usar cuando empieces a construir interfaces web con Tailwind. La idea es entender bien qué representan, cómo se aplican y cómo se combinan entre sí. Cada bloque incluye ejemplos muy comentados, como si estuviéramos viendo el código juntos por primera vez.</p>
+
+        <!-- Espaciado -->
+        <section class="card">
+            <h2 class="card-title">1) Espaciado: padding (p), margin (m), gap, space</h2>
+            <p class="text-gray-600 dark:text-gray-300">El espaciado es una de las bases del diseño con Tailwind. En lugar de escribir CSS como padding: 10px;, usas una escala numérica pensada para el diseño.</p>
+            <ul class="list-disc list-inside mt-2 text-gray-600 dark:text-gray-300">
+                <li><code>p-4</code> → padding completo de 1rem (16px si la raíz es 16px).</li>
+                <li><code>px-4</code> → padding horizontal (left + right).</li>
+                <li><code>pb-6</code> → padding inferior; 6 equivale a 1.5rem.</li>
+                <li><code>m-8</code> → margin completo 2rem.</li>
+                <li><code>my-4</code> → margin vertical (top + bottom).</li>
+                <li><code>gap-4</code> → separación entre hijos en un flex o grid.</li>
+            </ul>
+            <pre class="mt-3 p-4 bg-gray-100 dark:bg-gray-900 rounded text-xs overflow-x-auto"><code>&lt;div
+  class="p-6               /* padding en todo el contenedor */
+         mt-8              /* margin-top: separa este bloque de lo anterior */
+         rounded-xl shadow /* redondeado + sombra */
+         bg-white"
+&gt;
+  &lt;h2 class="mb-4 text-xl font-semibold"&gt;Título&lt;/h2&gt;
+  &lt;p class="mb-6 text-gray-600"&gt;Texto con espacio inferior.&lt;/p&gt;
+  &lt;div class="flex gap-4"&gt;
+    &lt;button class="px-4 py-2 bg-blue-600 text-white rounded"&gt;Aceptar&lt;/button&gt;
+    &lt;button class="px-4 py-2 bg-gray-200 text-gray-800 rounded"&gt;Cancelar&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            <div class="mt-4">
+                <h3 class="font-semibold">Comentarios:</h3>
+                <ul class="list-disc list-inside text-gray-600 dark:text-gray-300">
+                    <li>Usamos <code>gap-4</code> para espaciar botones sin márgenes manuales.</li>
+                    <li><code>mb-4</code> y <code>mb-6</code> crean un flujo visual claro.</li>
+                    <li>Toda la escala está predefinida, así ganas consistencia entre elementos sin pensar en “cuántos px”.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Sizing -->
+        <section class="card">
+            <h2 class="card-title">2) Tamaño: width (w) y height (h)</h2>
+            <p class="text-gray-600 dark:text-gray-300">Controlar el tamaño de los elementos es fundamental. Tailwind ofrece una escala para anchos y altos.</p>
+            <ul class="list-disc list-inside mt-2 text-gray-600 dark:text-gray-300">
+                <li><code>w-full</code> → width: 100%.</li>
+                <li><code>w-1/2</code> → width: 50%.</li>
+                <li><code>w-64</code> → width: 16rem (256px).</li>
+                <li><code>h-screen</code> → height: 100vh.</li>
+                <li><code>h-16</code> → height: 4rem (64px).</li>
+            </ul>
+            <pre class="mt-3 p-4 bg-gray-100 dark:bg-gray-900 rounded text-xs overflow-x-auto"><code>&lt;div class="flex gap-4"&gt;
+  &lt;div class="w-1/2 bg-blue-200 p-4 rounded"&gt;50% de ancho&lt;/div&gt;
+  &lt;div class="w-1/2 bg-green-200 p-4 rounded"&gt;50% de ancho&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="h-32 w-full bg-gray-200 mt-4 rounded flex items-center justify-center"&gt;
+  Alto fijo (h-32) y ancho completo (w-full)
+&lt;/div&gt;</code></pre>
+        </section>
+
+        <!-- Tipografía -->
+        <section class="card">
+            <h2 class="card-title">3) Tipografía: font-size, weight, color</h2>
+            <p class="text-gray-600 dark:text-gray-300">Estilizar texto es muy intuitivo con las utilidades de tipografía.</p>
+            <ul class="list-disc list-inside mt-2 text-gray-600 dark:text-gray-300">
+                <li><code>text-lg</code> → font-size: 1.125rem.</li>
+                <li><code>text-2xl</code> → font-size: 1.5rem.</li>
+                <li><code>font-bold</code> → font-weight: 700.</li>
+                <li><code>font-light</code> → font-weight: 300.</li>
+                <li><code>text-center</code> → text-align: center.</li>
+                <li><code>leading-relaxed</code> → line-height: 1.625.</li>
+                <li><code>tracking-wider</code> → letter-spacing: 0.05em.</li>
+            </ul>
+            <pre class="mt-3 p-4 bg-gray-100 dark:bg-gray-900 rounded text-xs overflow-x-auto"><code>&lt;h1 class="text-3xl font-bold text-gray-900"&gt;Título Principal&lt;/h1&gt;
+&lt;p class="mt-2 text-lg text-gray-600 leading-relaxed"&gt;
+  Este es un párrafo con un tamaño de fuente más grande y un interlineado más relajado para facilitar la lectura.
+&lt;/p&gt;</code></pre>
+        </section>
+
+        <!-- Colores -->
+        <section class="card">
+            <h2 class="card-title">4) Colores: background, text, border</h2>
+            <p class="text-gray-600 dark:text-gray-300">Tailwind viene con una paleta de colores muy completa y personalizable.</p>
+            <ul class="list-disc list-inside mt-2 text-gray-600 dark:text-gray-300">
+                <li><code>bg-blue-500</code> → background-color: #3b82f6.</li>
+                <li><code>text-red-600</code> → color: #dc2626.</li>
+                <li><code>border-gray-300</code> → border-color: #d1d5db.</li>
+                <li>La escala va de 50 (más claro) a 900 (más oscuro).</li>
+            </ul>
+            <pre class="mt-3 p-4 bg-gray-100 dark:bg-gray-900 rounded text-xs overflow-x-auto"><code>&lt;div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4" role="alert"&gt;
+  &lt;p class="font-bold"&gt;Alerta&lt;/p&gt;
+  &lt;p&gt;Esto es un componente de alerta que usa colores para comunicar significado.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+        </section>
+
+        <!-- Flexbox & Grid -->
+        <section class="card">
+            <h2 class="card-title">5) Flexbox y Grid</h2>
+            <p class="text-gray-600 dark:text-gray-300">Para alinear elementos, Flexbox y Grid son esenciales.</p>
+            <ul class="list-disc list-inside mt-2 text-gray-600 dark:text-gray-300">
+                <li><code>flex</code> → display: flex.</li>
+                <li><code>grid</code> → display: grid.</li>
+                <li><code>items-center</code> → align-items: center.</li>
+                <li><code>justify-between</code> → justify-content: space-between.</li>
+                <li><code>grid-cols-3</code> → grid-template-columns: repeat(3, minmax(0, 1fr)).</li>
+            </ul>
+            <pre class="mt-3 p-4 bg-gray-100 dark:bg-gray-900 rounded text-xs overflow-x-auto"><code>&lt;div class="flex items-center justify-between p-4 bg-gray-100 rounded-lg"&gt;
+  &lt;div&gt;Logo&lt;/div&gt;
+  &lt;div class="flex gap-4"&gt;
+    &lt;a href="#"&gt;Enlace 1&lt;/a&gt;
+    &lt;a href="#"&gt;Enlace 2&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4"&gt;
+  &lt;div class="bg-blue-200 p-4 rounded"&gt;Col 1&lt;/div&gt;
+  &lt;div class="bg-green-200 p-4 rounded"&gt;Col 2&lt;/div&gt;
+  &lt;div class="bg-red-200 p-4 rounded"&gt;Col 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </section>
+
+        <!-- Responsive Design -->
+        <section class="card">
+            <h2 class="card-title">6) Diseño Responsivo (Breakpoints)</h2>
+            <p class="text-gray-600 dark:text-gray-300">Aplica utilidades condicionalmente en diferentes tamaños de pantalla.</p>
+            <ul class="list-disc list-inside mt-2 text-gray-600 dark:text-gray-300">
+                <li><code>sm:</code> → min-width: 640px.</li>
+                <li><code>md:</code> → min-width: 768px.</li>
+                <li><code>lg:</code> → min-width: 1024px.</li>
+                <li><code>xl:</code> → min-width: 1280px.</li>
+            </ul>
+            <pre class="mt-3 p-4 bg-gray-100 dark:bg-gray-900 rounded text-xs overflow-x-auto"><code>&lt;div class="bg-red-500 md:bg-green-500 lg:bg-blue-500 p-4 rounded-lg text-white"&gt;
+  El fondo de este div cambia de color según el ancho de la pantalla.
+  &lt;ul&gt;
+    &lt;li&gt;Rojo en pantallas pequeñas.&lt;/li&gt;
+    &lt;li&gt;Verde en pantallas medianas (md).&lt;/li&gt;
+    &lt;li&gt;Azul en pantallas grandes (lg).&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div class="text-center lg:text-left mt-4"&gt;
+  Texto centrado en móvil, alineado a la izquierda en pantallas grandes.
+&lt;/div&gt;</code></pre>
+        </section>
+
+    
+<section class="card">
+  <h2 class="card-title">Ejercicio guiado — Panel de utilidades frecuentes</h2>
+
+  <!-- ENUNCIADO -->
+  <p class="text-sm text-gray-600 dark:text-gray-300">
+    Construye una cuadrícula responsiva de tarjetas “cheat-sheet” que demuestre las utilidades más usadas en un proyecto real:
+    espaciado, tipografía, color, bordes/radios, sombras/efectos y helpers de layout. No se escribe CSS manual; todo se resuelve
+    con clases de Tailwind. Cada tarjeta debe incluir un título, una breve descripción y un bloque interno con ejemplos prácticos.
+  </p>
+
+  <!-- OBJETIVOS Y RESTRICCIONES -->
+  <div class="mt-3 rounded-md border border-gray-200 dark:border-gray-800 bg-white/50 dark:bg-slate-900/50 p-3">
+    <h3 class="font-semibold text-sm text-gray-800 dark:text-gray-200">Requisitos</h3>
+    <ul class="mt-2 list-disc list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1">
+      <li>Cuadrícula responsiva con <code>grid</code>, <code>md:grid-cols-2</code>, <code>lg:grid-cols-3</code> y separación con <code>gap-6</code>.</li>
+      <li>Cada tarjeta con borde, radio, sombra y padding coherentes en claro/oscuro.</li>
+      <li>Dentro de al menos una tarjeta, usa <code>divide-y</code> o <code>space-y</code> para secciones internas.</li>
+      <li>Demuestra utilidades de color (<code>bg-</code>, <code>text-</code>, <code>border-</code>) y valores arbitrarios (<code>p-[10px]</code>, <code>w-[62%]</code>).</li>
+      <li>Estados de interacción mínimos: <code>hover:</code>, <code>focus-visible:</code>, y modo oscuro con <code>dark:</code>.</li>
+    </ul>
+  </div>
+
+  <!-- PASOS GUIADOS -->
+  <h3 class="mt-4 font-semibold text-sm text-gray-800 dark:text-gray-200">Pasos guiados</h3>
+  <ol class="list-decimal list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1 mt-2">
+    <li>Crea el contenedor de la cuadrícula con <code>grid</code>, <code>gap-6</code>, <code>md:grid-cols-2</code>, <code>lg:grid-cols-3</code>.</li>
+    <li>Define la tarjeta base con <code>rounded-xl</code>, <code>border</code>, <code>shadow</code>, <code>p-4</code> y variantes <code>dark:</code>.</li>
+    <li>Dentro de “Spacing”, muestra ejemplos de <code>p-*</code>, <code>m-*</code>, <code>gap-*</code> y un valor arbitrario (<code>p-[10px]</code>).</li>
+    <li>En “Tipografía”, combina escalas (<code>text-xs</code>, <code>text-sm</code>, <code>text-2xl</code>) y pesos; añade <code>tracking-wide</code>/<code>leading-relaxed</code>.</li>
+    <li>En “Color”, demuestra contraste accesible y opacidades (<code>bg-brand/10</code>, <code>text-brand</code>, <code>ring-brand/40</code>).</li>
+    <li>En “Bordes y radios”, usa <code>rounded</code> variables y <code>border-*</code>; añade <code>divide-y</code> interno.</li>
+    <li>En “Sombras y efectos”, practica <code>shadow-sm</code>/<code>shadow-lg</code>, <code>ring</code> y <code>outline</code>.</li>
+    <li>En “Layout helpers”, ilustra <code>flex</code>, <code>items-center</code>, <code>justify-between</code>, <code>aspect-video</code> y <code>w-[62%]</code>.</li>
+  </ol>
+
+  <!-- SOLUCIÓN DE REFERENCIA -->
+  <div class="mt-4 border border-dashed border-gray-300 dark:border-gray-700 rounded-lg p-4">
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <!-- Spacing -->
+      <article class="group rounded-xl bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 p-4 shadow transition hover:shadow-md">
+        <p class="text-xs font-semibold text-brand uppercase">Spacing</p>
+        <h3 class="mt-2 text-lg font-bold">Gap y padding</h3>
+        <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
+          Combina <code>px-6</code>, <code>py-4</code>, <code>gap-3</code> y valores arbitrarios.
+        </p>
+        <div class="mt-3 grid grid-cols-3 gap-3">
+          <div class="rounded-md bg-slate-100 dark:bg-slate-800 p-2">p-2</div>
+          <div class="rounded-md bg-slate-100 dark:bg-slate-800 px-6 py-4">px-6<br>py-4</div>
+          <div class="rounded-md bg-slate-100 dark:bg-slate-800 p-[10px]">p-[10px]</div>
+        </div>
+      </article>
+
+      <!-- Tipografía -->
+      <article class="rounded-xl bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 p-4 shadow">
+        <p class="text-xs font-semibold text-brand uppercase">Tipografía</p>
+        <h3 class="mt-2 text-lg font-bold">Escalas consistentes</h3>
+        <div class="mt-2 space-y-2">
+          <p class="text-xs tracking-wide uppercase text-gray-500 dark:text-gray-400">Etiqueta xs</p>
+          <p class="text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+            Cuerpo en <code>text-sm</code> con <code>leading-relaxed</code>.
+          </p>
+          <p class="text-2xl font-extrabold">Título 2xl</p>
+        </div>
+      </article>
+
+      <!-- Color -->
+      <article class="rounded-xl bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 p-4 shadow">
+        <p class="text-xs font-semibold text-brand uppercase">Color</p>
+        <h3 class="mt-2 text-lg font-bold">Contraste accesible</h3>
+        <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
+          Ensaya fondo, texto y acentos con opacidades.
+        </p>
+        <div class="mt-3 flex items-center gap-3">
+          <span class="rounded-md bg-slate-900 px-2 py-1 text-white">#1</span>
+          <span class="rounded-md bg-brand/10 px-2 py-1 text-brand">brand/10</span>
+          <button class="rounded-md border border-gray-300 dark:border-gray-700 px-2 py-1 text-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand/40">
+            ring-brand/40
+          </button>
+        </div>
+      </article>
+
+      <!-- Bordes y radios (con divide-y) -->
+      <article class="rounded-xl bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 p-4 shadow">
+        <p class="text-xs font-semibold text-brand uppercase">Bordes y radios</p>
+        <h3 class="mt-2 text-lg font-bold">Perfiles y separadores</h3>
+        <div class="mt-3 divide-y divide-gray-200 dark:divide-gray-800">
+          <div class="py-2 flex items-center justify-between">
+            <span class="rounded border border-gray-300 dark:border-gray-700 px-2 py-1">rounded</span>
+            <span class="rounded-md border border-gray-300 dark:border-gray-700 px-2 py-1">rounded-md</span>
+          </div>
+          <div class="py-2 flex items-center justify-between">
+            <span class="rounded-lg border border-gray-300 dark:border-gray-700 px-2 py-1">rounded-lg</span>
+            <span class="rounded-full border border-gray-300 dark:border-gray-700 px-2 py-1">rounded-full</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Sombras y efectos -->
+      <article class="rounded-xl bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 p-4 shadow">
+        <p class="text-xs font-semibold text-brand uppercase">Sombras y efectos</p>
+        <h3 class="mt-2 text-lg font-bold">Profundidad y foco</h3>
+        <div class="mt-3 grid grid-cols-2 gap-3">
+          <button class="rounded-md bg-white dark:bg-slate-800 p-3 shadow-sm">shadow-sm</button>
+          <button class="rounded-md bg-white dark:bg-slate-800 p-3 shadow-lg">shadow-lg</button>
+          <button class="rounded-md bg-white dark:bg-slate-800 p-3 outline outline-1 outline-gray-300 dark:outline-gray-700">outline</button>
+          <button class="rounded-md bg-white dark:bg-slate-800 p-3 focus:outline-none focus:ring-2 focus:ring-brand/60">
+            focus:ring-2
+          </button>
+        </div>
+      </article>
+
+      <!-- Layout helpers -->
+      <article class="rounded-xl bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 p-4 shadow">
+        <p class="text-xs font-semibold text-brand uppercase">Layout</p>
+        <h3 class="mt-2 text-lg font-bold">Flex y tamaños</h3>
+        <div class="mt-2 space-y-3">
+          <div class="flex items-center justify-between rounded-md bg-slate-100 p-2 dark:bg-slate-800">
+            <span class="text-xs text-gray-600 dark:text-gray-300">items-center / justify-between</span>
+            <span class="rounded bg-white/50 px-2 py-0.5 text-xs dark:bg-white/10">helper</span>
+          </div>
+          <div class="rounded-md bg-slate-100 p-2 dark:bg-slate-800">
+            <div class="h-2 w-[62%] rounded bg-brand/40" title="w-[62%]"></div>
+          </div>
+          <div class="aspect-video w-full overflow-hidden rounded-md bg-slate-100 dark:bg-slate-800">
+            <div class="h-full w-full bg-gradient-to-br from-brand/20 via-brand/10 to-transparent"></div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <!-- CHECKLIST -->
+  <h3 class="mt-4 font-semibold text-sm text-gray-800 dark:text-gray-200">Checklist</h3>
+  <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1 mt-2">
+    <li>¿La cuadrícula se adapta correctamente en <code>md</code> y <code>lg</code>?</li>
+    <li>¿Al menos una tarjeta usa <code>divide-y</code> o <code>space-y</code> para separar contenido interno?</li>
+    <li>¿Has demostrado un valor arbitrario (por ejemplo, <code>w-[62%]</code> o <code>p-[10px]</code>)?</li>
+    <li>¿Los elementos interactivos tienen foco visible (<code>focus:ring</code> o <code>outline</code>)?</li>
+    <li>¿Se mantiene el contraste en claro y oscuro con <code>dark:</code>?</li>
+  </ul>
+
+  <!-- RETOS OPCIONALES -->
+  <h3 class="mt-4 font-semibold text-sm text-gray-800 dark:text-gray-200">Retos opcionales</h3>
+  <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1 mt-2">
+    <li>Añade una cabecera de panel con <code>flex</code> y un botón “Ver todo” con estado <code>hover:</code> y <code>active:</code>.</li>
+    <li>Convierte el contenedor principal en <code>@container</code> y cambia la rejilla con <code>@md:</code> en lugar de <code>md:</code>.</li>
+    <li>Integra <code>aria-pressed</code> en un botón de filtro y usa variantes <code>aria-pressed:</code> para el estado activo.</li>
+  </ul>
+</section>
+
+
+</main>
+
+    <script>
+      const menuBtn = document.getElementById('menu-btn');
+      const menu = document.getElementById('menu');
+
+      if (menuBtn) {
+        menuBtn.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
+        });
+      }
+
+      // Active link styling
+      const currentPath = window.location.pathname;
+      const navLinks = document.querySelectorAll('nav a');
+
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+          link.classList.add('font-bold', 'text-brand');
+        }
+      });
+    </script>
+</body>
+</html>

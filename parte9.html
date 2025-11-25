@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parte 9 — Tipografía y Colores</title>
+  <link href="/src/style.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-950 dark:text-gray-100">
+
+  <header class="max-w-5xl mx-auto p-4 flex items-center justify-between">
+    <a class="text-xl font-bold text-brand" href="/">Tailwind v4.1 — Tutorial</a>
+    <div class="md:hidden">
+      <button id="menu-btn" class="text-gray-600 hover:text-gray-800 focus:outline-none">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+    </div>
+    <nav id="menu" class="hidden md:flex text-sm flex-col md:flex-row items-center">
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/index.html">Index</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte1.html">Parte 1</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte2.html">Parte 2</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte3.html">Parte 3</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte4.html">Parte 4</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte5.html">Parte 5</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte6.html">Parte 6</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte7.html">Parte 7</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte8.html">Parte 8</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte9.html">Parte 9</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte10.html">Parte 10</a>
+    </nav>
+  </header>
+
+  <main class="max-w-5xl mx-auto p-4 space-y-8">
+    <h1 class="text-3xl font-bold">Más utilidades de Tailwind CSS</h1>
+
+    <!-- Tipografía -->
+    <section class="card">
+      <h2 class="card-title">2) Tipografía: tamaño, peso, alineación, espaciado</h2>
+      <ul class="list-disc list-inside mt-2 text-gray-600 dark:text-gray-300">
+        <li><code>text-sm, text-lg, text-4xl</code>: escala de tamaños.</li>
+        <li><code>font-medium, font-bold</code>: peso del texto.</li>
+        <li><code>leading-snug, tracking-wide</code>: altura de línea y espaciado entre caracteres.</li>
+        <li><code>text-center, text-left</code>: alineación.</li>
+      </ul>
+      <pre class="mt-3 p-4 bg-gray-100 dark:bg-gray-900 rounded text-xs overflow-x-auto"><code>&lt;div class="p-6 bg-gray-100 rounded-lg"&gt;
+  &lt;h1 class="text-3xl font-bold text-gray-800"&gt;Bienvenido a Tailwind CSS&lt;/h1&gt;
+  &lt;p class="mt-4 text-gray-600 leading-relaxed"&gt;
+    Este párrafo tiene un interlineado relajado y un color suave para mejorar la legibilidad.
+  &lt;/p&gt;
+  &lt;p class="mt-2 text-sm font-medium text-gray-500 tracking-wide"&gt;
+    Todo se controla con clases: tamaño, color, peso y espaciado.
+  &lt;/p&gt;
+&lt;/div&gt;</code></pre>
+      <div class="mt-4">
+        <h3 class="font-semibold">Comentarios:</h3>
+        <ul class="list-disc list-inside text-gray-600 dark:text-gray-300">
+          <li><code>leading-relaxed</code> hace que el texto “respire” más.</li>
+          <li>La escala de tipografías está lista para producir títulos efectivos, párrafos cómodos y subtítulos.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Colores -->
+    <section class="card">
+      <h2 class="card-title">3) Colores: fondo, texto, borde, nivel de opacidad</h2>
+      <p class="text-gray-600 dark:text-gray-300">Tailwind usa una paleta basada en tonos predefinidos (como slate,
+        gray, blue, red) numerados de 50 a 950.</p>
+      <ul class="list-disc list-inside mt-2 text-gray-600 dark:text-gray-300">
+        <li><code>bg-blue-500</code> → azul medio.</li>
+        <li><code>text-gray-700</code> → gris oscuro.</li>
+        <li><code>border-gray-200</code></li>
+        <li><code>bg-red-500/80</code> → con 80% de opacidad, usando la sintaxis del “slash”.</li>
+      </ul>
+      <pre class="mt-3 p-4 bg-gray-100 dark:bg-gray-900 rounded text-xs overflow-x-auto"><code>&lt;div
+  class="p-4 bg-white border border-gray-200
+         dark:bg-slate-800 dark:text-gray-200 dark:border-gray-700
+         rounded-lg"
+&gt;
+  &lt;p class="text-gray-700 dark:text-gray-300"&gt;
+    Este texto cambia en modo oscuro.
+  &lt;/p&gt;
+  &lt;button
+    class="mt-4 px-3 py-2 bg-rose-500/90 hover:bg-rose-600 text-white rounded-md"
+  &gt;
+    Eliminar
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+      <div class="mt-4">
+        <h3 class="font-semibold">Comentarios:</h3>
+        <ul class="list-disc list-inside text-gray-600 dark:text-gray-300">
+          <li><code>bg-rose-500/90</code> aplica opacidad sin necesitar rgba().</li>
+          <li>El bloque cambia fondo, borde y texto automáticamente con variantes <code>dark:</code>.</li>
+          <li>Puedes usar valores arbitrarios como <code>bg-[#316ff6]</code> si necesitas un color específico.</li>
+        </ul>
+      </div>
+    </section>
+
+
+    <section class="card">
+      <h2 class="card-title">Ejercicio guiado — Guion editorial con jerarquía, ritmo y contraste</h2>
+
+      <!-- ENUNCIADO -->
+      <p class="text-sm text-gray-600 dark:text-gray-300">
+        Redacta un fragmento editorial aplicando una escala tipográfica coherente, buen ritmo de línea y un uso medido
+        del color.
+        El objetivo es que el texto se lea con fluidez y tenga una voz visual consistente sin escribir CSS adicional.
+      </p>
+
+      <!-- OBJETIVOS Y RESTRICCIONES -->
+      <div class="mt-3 rounded-md border border-gray-200 dark:border-gray-800 bg-white/50 dark:bg-slate-900/50 p-3">
+        <h3 class="font-semibold text-sm text-gray-800 dark:text-gray-200">Requisitos mínimos</h3>
+        <ul class="mt-2 list-disc list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1">
+          <li>Usar una escala que incluya al menos: <code>text-xs</code>, <code>text-base</code>, <code>text-2xl</code>
+            o <code>text-4xl</code>.</li>
+          <li>Controlar legibilidad con <code>leading-relaxed</code> o <code>leading-7</code>, y limitar el ancho con
+            <code>max-w-prose</code>.</li>
+          <li>Aplicar acentos cromáticos discretos con <code>text-brand</code> y fondos sutiles
+            (<code>bg-*-500/10</code>).</li>
+          <li>Incluir al menos un bloque semántico: <code>blockquote</code>, <code>figure</code> con
+            <code>figcaption</code> o un <em>callout</em>.</li>
+          <li>Compatibilidad con modo oscuro usando variantes <code>dark:</code>.</li>
+        </ul>
+      </div>
+
+      <!-- PASOS GUIADOS -->
+      <h3 class="mt-4 font-semibold text-sm text-gray-800 dark:text-gray-200">Pasos guiados</h3>
+      <ol class="list-decimal list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1 mt-2">
+        <li>Define un contenedor de lectura con <code>max-w-prose</code> y separaciones verticales usando
+          <code>space-y-4</code> o <code>space-y-6</code>.</li>
+        <li>Crea la jerarquía: etiqueta editorial en <code>text-xs</code> y <code>uppercase</code> con
+          <code>tracking</code> amplio; titular en <code>text-4xl</code> y <code>leading-tight</code>; cuerpo en
+          <code>text-base</code> con <code>leading-relaxed</code>.</li>
+        <li>Añade un subtítulo o bajada en <code>text-lg</code> con color atenuado para diferenciarlo del cuerpo.</li>
+        <li>Incluye un <code>blockquote</code> o <code>figure</code> con <code>figcaption</code>; realza con borde o
+          fondo suave.</li>
+        <li>Destaca una palabra o frase clave con <code>bg-rose-500/10</code> o <code>bg-brand/10</code> y
+          <code>rounded</code> para crear un acento sin romper el flujo.</li>
+      </ol>
+
+      <!-- SOLUCIÓN DE REFERENCIA -->
+      <div class="mt-4 border border-dashed border-gray-300 dark:border-gray-700 rounded-lg p-6">
+        <article class="max-w-prose space-y-6">
+          <!-- Etiqueta editorial -->
+          <p class="text-xs font-semibold tracking-[0.2em] text-brand uppercase">Editorial</p>
+
+          <!-- Titular -->
+          <h3 class="text-4xl font-bold leading-tight text-gray-900 dark:text-gray-100">
+            Diseña una voz consistente
+          </h3>
+
+          <!-- Bajada / Subtítulo -->
+          <p class="text-lg text-gray-700/90 dark:text-gray-300/90">
+            Una tipografía equilibrada y una paleta sobria facilitan la lectura y proyectan confianza.
+          </p>
+
+          <!-- Cuerpo -->
+          <p class="text-base leading-relaxed text-gray-700 dark:text-gray-300">
+            Empieza por establecer una escala clara entre título, bajada y cuerpo. Mantén el ancho de línea acotado con
+            <span class="rounded bg-rose-500/10 px-1">medidas de lectura cómodas</span>
+            y controla el ritmo con una altura de línea generosa. Usa el color como guía, no como protagonista.
+          </p>
+
+          <!-- Callout suave -->
+          <div
+            class="rounded-lg border border-gray-200 bg-gray-50 p-4 text-sm text-gray-700 dark:border-gray-800 dark:bg-slate-900/60 dark:text-gray-300">
+            <p>
+              Consejo: limita los estilos a unas pocas decisiones fuertes (familia, escala, interlínea, acentos) y
+              repítelas con consistencia en todo el documento.
+            </p>
+          </div>
+
+          <!-- Cita -->
+          <blockquote class="border-l-4 border-brand/50 pl-4 italic text-gray-600 dark:text-gray-300">
+            La tipografía clara y los colores coherentes comunican profesionalismo incluso en proyectos sencillos.
+          </blockquote>
+
+          <!-- Figura con pie -->
+          <figure class="space-y-2">
+            <div class="rounded-lg bg-gradient-to-br from-brand/10 via-transparent to-transparent p-4">
+              <div class="h-24 w-full rounded-md bg-white shadow-sm dark:bg-slate-800"></div>
+            </div>
+            <figcaption class="text-xs text-gray-500 dark:text-gray-400">
+              Figura 1. Ejemplo de bloque visual neutro que no compite con el texto.
+            </figcaption>
+          </figure>
+
+          <!-- Lista breve con ritmo -->
+          <ul class="list-disc pl-5 text-base leading-relaxed text-gray-700 dark:text-gray-300">
+            <li><span class="font-semibold">Jerarquía:</span> diferencia clara entre niveles (xs, base, 2xl/4xl).</li>
+            <li><span class="font-semibold">Ritmo:</span> usa <code>leading-relaxed</code> para mejorar la legibilidad.
+            </li>
+            <li><span class="font-semibold">Acentos:</span> <code>text-brand</code> y fondos suaves para enfatizar.</li>
+          </ul>
+        </article>
+      </div>
+
+      <!-- CHECKLIST -->
+      <h3 class="mt-4 font-semibold text-sm text-gray-800 dark:text-gray-200">Checklist</h3>
+      <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1 mt-2">
+        <li>¿El titular destaca sin romper el ritmo del resto del texto?</li>
+        <li>¿El ancho de texto está limitado con <code>max-w-prose</code> y la lectura es fluida?</li>
+        <li>¿Los acentos cromáticos son sutiles y mantienen buen contraste en claro/oscuro?</li>
+        <li>¿Has usado al menos un bloque semántico (blockquote, figure+figcaption o callout)?</li>
+      </ul>
+
+      <!-- RETOS OPCIONALES -->
+      <h3 class="mt-4 font-semibold text-sm text-gray-800 dark:text-gray-200">Retos opcionales</h3>
+      <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1 mt-2">
+        <li>Añade una “bajada” secundaria con <code>text-base</code> y <code>text-gray-600</code> para modular tono.
+        </li>
+        <li>Introduce una nota al pie con <code>text-xs</code> y <code>tracking-wide</code> para diferenciarla del
+          cuerpo.</li>
+        <li>Explora un acento alternativo con <code>bg-amber-500/10</code> y comprueba el contraste en oscuro.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const menu = document.getElementById('menu');
+
+    if (menuBtn) {
+      menuBtn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+      });
+    }
+
+    // Active link styling
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('nav a');
+
+    navLinks.forEach(link => {
+      if (link.getAttribute('href') === currentPath) {
+        link.classList.add('font-bold', 'text-brand');
+      }
+    });
+  </script>
+</body>
+
+</html>

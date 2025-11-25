@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tailwind v4.1 — Tutorial (Índice)</title>
+  <link href="/src/style.css" rel="stylesheet" />
+</head>
+
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-950 dark:text-gray-100">
+  <header class="max-w-5xl mx-auto p-4 flex items-center justify-between">
+    <a class="text-xl font-bold text-brand" href="/">Tailwind v4.1 — Tutorial</a>
+    <div class="md:hidden">
+      <button id="menu-btn" class="text-gray-600 hover:text-gray-800 focus:outline-none">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+    </div>
+    <nav id="menu" class="hidden md:flex text-sm flex-col md:flex-row items-center">
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/index.html">Index</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte1.html">Parte 1</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte2.html">Parte 2</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte3.html">Parte 3</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte4.html">Parte 4</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte5.html">Parte 5</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte6.html">Parte 6</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/part7.html">Parte 7</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte8.html">Parte 8</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte9.html">Parte 9</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte10.html">Parte 10</a>
+
+    </nav>
+  </header>
+
+  <main class="max-w-5xl mx-auto p-4">
+    <h1 class="text-3xl font-bold">Índice del tutorial</h1>
+    <p class="mt-2 text-gray-600 dark:text-gray-300">Recorre las 5 partes con ejemplos comentados:</p>
+
+    <ol class="mt-6 space-y-3 list-decimal list-inside">
+      <li><a class="text-brand hover:underline" href="/parte1.html">Fundamentos y Play CDN</a></li>
+      <li><a class="text-brand hover:underline" href="/parte2.html">Setup con Vite + @apply y tema</a></li>
+      <li><a class="text-brand hover:underline" href="/parte3.html">Variantes: hover, focus, active, dark,
+          responsive</a></li>
+      <li><a class="text-brand hover:underline" href="/parte4.html">Motor y capas: generación, @layer y composición</a>
+      </li>
+      <li><a class="text-brand hover:underline" href="/parte5.html">Pseudoclases avanzadas: group, peer, before/after,
+          ARIA, @container</a></li>
+      <li><a class="text-brand hover:underline" href="/parte6.html">Styling with utility classes (Overview, states,
+          responsive, dark, composition, arbitrary values, inline styles, conflicts)</a></li>
+      <li><a class="text-brand hover:underline" href="/part7.html">Dark Mode</a></li>
+      <li><a class="text-brand hover:underline" href="/parte8.html">Utilidades más usadas</a></li>
+      <li><a class="text-brand hover:underline" href="/parte9.html">Tipografía y Colores</a></li>
+      <li><a class="text-brand hover:underline" href="/parte10.html">Componentes</a></li>
+      <li><a class="text-brand hover:underline" href="/parte9.html">Ejercicio Final</a></li>
+    </ol>
+
+    <div class="mt-10 grid gap-6 sm:grid-cols-2">
+      <div class="card">
+        <h2 class="card-title">Prueba rápida</h2>
+        <p class="text-gray-600 dark:text-gray-300">Este proyecto ya viene con Tailwind v4.1 configurado.</p>
+        <button class="btn btn-brand mt-4">Botón de ejemplo</button>
+      </div>
+      <div class="card">
+        <h2 class="card-title">Modo oscuro</h2>
+        <p class="text-gray-600 dark:text-gray-300">Activa el modo oscuro del sistema para ver cambios.</p>
+      </div>
+    </div>
+  </main>
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const menu = document.getElementById('menu');
+
+    if (menuBtn) {
+      menuBtn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+      });
+    }
+
+    // Active link styling
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('nav a');
+
+    navLinks.forEach(link => {
+      if (link.getAttribute('href') === currentPath) {
+        link.classList.add('font-bold', 'text-brand');
+      }
+    });
+  </script>
+</body>
+
+</html>

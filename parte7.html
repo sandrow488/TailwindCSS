@@ -1,0 +1,343 @@
+﻿<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parte 7 — Modo oscuro y temas</title>
+
+  <link href="/src/style.css" rel="stylesheet" />
+
+  <!-- Aplica el tema antes de que se pinte el documento (evita parpadeo) -->
+  <script>
+    (function () {
+      const saved = localStorage.getItem('theme'); // 'dark' | 'light' | null (sistema)
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const isDark = saved === 'dark' || (!saved && prefersDark);
+      document.documentElement.classList.toggle('dark', isDark);
+    })();
+  </script>
+</head>
+
+<body class="bg-white p-8 text-gray-800 transition-colors dark:bg-gray-900 dark:text-gray-200">
+  <header class="mx-auto flex max-w-5xl items-center justify-between">
+    <a class="text-xl font-bold text-brand" href="/">Tailwind v4.1 — Tutorial</a>
+    <nav class="text-sm">
+      <a class="px-2 hover:underline" href="/parte1.html">Parte 1</a>
+      <a class="px-2 hover:underline" href="/parte2.html">Parte 2</a>
+      <a class="px-2 hover:underline" href="/parte3.html">Parte 3</a>
+      <a class="px-2 hover:underline" href="/parte4.html">Parte 4</a>
+      <a class="px-2 hover:underline" href="/parte5.html">Parte 5</a>
+      <a class="px-2 hover:underline" href="/parte6.html">Parte 6</a>
+      <a class="px-2 hover:underline" href="/parte7.html">Parte 7</a>
+      <a class="px-2 hover:underline" href="/parte8.html">Parte 8</a>
+      <a class="px-2 hover:underline" href="/parte9.html">Parte 9</a>
+      <a class="px-2 hover:underline" href="/parte10.html">Parte 10</a>
+    </nav>
+  </header>
+
+  <main class="mx-auto mt-8 max-w-5xl space-y-8">
+    <section>
+      <h1 class="text-3xl font-bold">Parte 7 — Modo oscuro</h1>
+      <p class="mt-2 text-gray-700 dark:text-gray-300">
+        Aprende a activar el modo oscuro con variantes, a respetar la preferencia del sistema y a preparar controles
+        para
+        que cada persona elija su tema.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2 class="card-title">Visión general</h2>
+      <p class="text-sm text-gray-700 dark:text-gray-300">
+        El modo oscuro ya es una opción nativa en los sistemas operativos. Tailwind facilita mantener dos apariencias en
+        paralelo mediante la variante <code>dark:</code>, que reescribe utilidades cuando <code>.dark</code> está
+        presente
+        en <code>&lt;html&gt;</code>.
+      </p>
+      <p class="mt-3 text-sm text-gray-700 dark:text-gray-300">
+        Define los estilos claros por defecto y añade las variantes oscuras sólo donde sea necesario. El resultado
+        mantiene
+        la coherencia visual sin duplicar hojas de estilo.
+      </p>
+      <div class="mt-4 flex flex-col gap-4 md:flex-row">
+        <div class="md:w-1/2">
+          <h3 class="font-semibold">Tema claro</h3>
+          <div class="rounded-lg bg-white px-6 py-8 shadow-xl ring-1 ring-gray-900/5">
+            <div>
+              <span class="inline-flex items-center justify-center rounded-md bg-indigo-500 p-2 shadow-lg">
+                <svg class="h-6 w-6 stroke-white" fill="none" viewBox="0 0 24 24">
+                  <path
+                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                </svg>
+              </span>
+            </div>
+            <h3 class="mt-5 text-base font-medium tracking-tight text-gray-900">Escritura en cualquier ángulo</h3>
+            <p class="mt-2 text-sm text-gray-500">
+              El Zero Gravity Pen conserva el contraste sobre superficies claras y puede escribir incluso boca abajo.
+            </p>
+          </div>
+        </div>
+        <div class="md:w-1/2">
+          <h3 class="font-semibold">Tema oscuro</h3>
+          <div class="rounded-lg bg-gray-800 px-6 py-8 shadow-xl ring-1 ring-white/10">
+            <div>
+              <span class="inline-flex items-center justify-center rounded-md bg-indigo-500 p-2 shadow-lg">
+                <svg class="h-6 w-6 stroke-white" fill="none" viewBox="0 0 24 24">
+                  <path
+                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                </svg>
+              </span>
+            </div>
+            <h3 class="mt-5 text-base font-medium tracking-tight text-white">Escritura en cualquier ángulo</h3>
+            <p class="mt-2 text-sm text-gray-400">
+              Con el tema oscuro activado, sólo cambian los colores necesarios para mantener un contraste accesible.
+            </p>
+          </div>
+        </div>
+      </div>
+      <pre
+        class="mt-4 overflow-x-auto rounded bg-gray-100 p-2 text-xs dark:bg-gray-900"><code>&lt;div class="bg-white dark:bg-gray-800 rounded-lg px-6 py-8 ring shadow-xl ring-gray-900/5"&gt;...&lt;/div&gt;</code></pre>
+    </section>
+
+    <section class="card">
+      <h2 class="card-title">Compatibilidad con el tema del sistema</h2>
+      <p class="text-sm text-gray-700 dark:text-gray-300">
+        Puedes ofrecer un control manual (claro/oscuro) y una opción "Sistema" que respete
+        <code>prefers-color-scheme</code>.
+        Guarda la preferencia en <code>localStorage</code> y actualiza la clase <code>.dark</code> según corresponda.
+      </p>
+      <div class="mt-4 flex flex-wrap gap-3">
+        <button onclick="setTheme('light')"
+          class="rounded bg-gray-200 px-4 py-2 font-semibold text-gray-900 transition active:scale-95 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600">
+          Claro
+        </button>
+        <button onclick="setTheme('dark')"
+          class="rounded bg-indigo-500 px-4 py-2 font-semibold text-white transition active:scale-95 hover:bg-indigo-600">
+          Oscuro
+        </button>
+        <button onclick="setTheme('system')"
+          class="rounded border border-gray-300 px-4 py-2 font-semibold text-gray-900 transition active:scale-95 dark:border-gray-600 dark:text-gray-100">
+          Sistema
+        </button>
+      </div>
+      <p class="mt-3 text-xs text-gray-600 dark:text-gray-400">
+        El script inferior encapsula la lógica: aplica el tema al cargar, reacciona a los botones y escucha cambios del
+        sistema cuando no hay preferencia guardada.
+      </p>
+    </section>
+  </main>
+
+  <section class="mx-auto mt-8 max-w-5xl p-4">
+    <div class="card">
+      <h2 class="card-title">Ejercicio guiado — Toggle de tema accesible con persistencia + preview sin JS</h2>
+
+      <!-- ENUNCIADO -->
+      <p class="text-sm text-gray-600 dark:text-gray-300">
+        Construye un selector de tema accesible con tres opciones: Claro, Oscuro y Sistema.
+        La elección debe guardarse en <code>localStorage</code> y aplicarse al documento
+        añadiendo o quitando la clase <code>dark</code> en <code>document.documentElement</code>.
+        Además, incluye un área de “preview local” que cambie de claro/oscuro únicamente con utilidades CSS
+        usando <code>peer</code> (sin JavaScript).
+      </p>
+
+      <!-- OBJETIVOS Y REQUISITOS -->
+      <div class="mt-3 rounded-md border border-gray-200 dark:border-gray-800 bg-white/50 dark:bg-slate-900/50 p-3">
+        <h3 class="font-semibold text-sm text-gray-800 dark:text-gray-200">Requisitos</h3>
+        <ul class="mt-2 list-disc list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1">
+          <li>Tres opciones exclusivas (radio buttons): Claro, Oscuro, Sistema.</li>
+          <li>Persistencia en <code>localStorage</code> con clave <code>theme</code> (<code>light</code> |
+            <code>dark</code> | <code>system</code>).</li>
+          <li>Sincronización del tema en <code>&lt;html&gt;</code> mediante clase <code>dark</code>.</li>
+          <li>Escuchar cambios del SO con <code>prefers-color-scheme</code> cuando la elección sea “Sistema”.</li>
+          <li>Preview “local” que alterna con <code>peer</code> sin JS adicional.</li>
+          <li>Accesible: usar <code>&lt;fieldset&gt;</code>, <code>&lt;legend&gt;</code> y etiquetas <code>for</code>.
+          </li>
+        </ul>
+      </div>
+
+      <!-- PASOS GUIADOS -->
+      <h3 class="mt-4 font-semibold text-sm text-gray-800 dark:text-gray-200">Pasos guiados</h3>
+      <ol class="mt-2 list-decimal list-inside space-y-1 text-sm text-gray-600 dark:text-gray-300">
+        <li>Crear un <code>&lt;fieldset&gt;</code> con tres radios y sus <code>&lt;label&gt;</code>.</li>
+        <li>Implementar <code>setTheme(value)</code> para: guardar en <code>localStorage</code>, aplicar o quitar
+          <code>dark</code> en <code>&lt;html&gt;</code> y registrar/retirar el listener del sistema si procede.</li>
+        <li>En la carga, leer la preferencia: si no existe, usar “Sistema”. Sincronizar el estado de los radios.</li>
+        <li>Para el preview, colocar un <code>checkbox</code> oculto con clase <code>peer</code> y un contenedor cuyo
+          estilo cambie con <code>peer-checked:</code> sin usar JS.</li>
+      </ol>
+
+      <!-- SELECTOR REAL (con persistencia) -->
+      <div class="mt-4 rounded-lg border border-dashed border-gray-300 dark:border-gray-700 p-4">
+        <fieldset class="space-y-3">
+          <legend class="text-sm font-medium text-gray-800 dark:text-gray-200">Preferencia de tema</legend>
+
+          <div class="flex flex-wrap gap-2 text-sm">
+            <!-- Radio: Claro -->
+            <input class="sr-only" type="radio" name="theme" id="theme-light" value="light" />
+            <label for="theme-light" class="cursor-pointer rounded-full border border-gray-300 px-3 py-1
+                        text-gray-700 dark:text-gray-200 dark:border-gray-600
+                        focus:outline-none focus:ring-2 focus:ring-brand/50">
+              Claro
+            </label>
+
+            <!-- Radio: Oscuro -->
+            <input class="sr-only" type="radio" name="theme" id="theme-dark" value="dark" />
+            <label for="theme-dark" class="cursor-pointer rounded-full border border-gray-300 px-3 py-1
+                        text-gray-700 dark:text-gray-200 dark:border-gray-600
+                        focus:outline-none focus:ring-2 focus:ring-brand/50">
+              Oscuro
+            </label>
+
+            <!-- Radio: Sistema -->
+            <input class="sr-only" type="radio" name="theme" id="theme-system" value="system" />
+            <label for="theme-system" class="cursor-pointer rounded-full border border-gray-300 px-3 py-1
+                        text-gray-700 dark:text-gray-200 dark:border-gray-600
+                        focus:outline-none focus:ring-2 focus:ring-brand/50">
+              Sistema
+            </label>
+          </div>
+
+          <p class="text-xs text-gray-500 dark:text-gray-400">
+            La opción “Sistema” sigue tu preferencia del sistema operativo y se actualiza si esta cambia.
+          </p>
+        </fieldset>
+      </div>
+
+      <!-- PREVIEW SIN JS (peer) -->
+      <div class="mt-4 rounded-lg border border-dashed border-gray-300 p-4 dark:border-gray-700">
+        <div class="flex items-center gap-2 text-sm font-medium">
+          <input type="checkbox" id="preview-toggle" class="peer sr-only" />
+          <label for="preview-toggle"
+            class="cursor-pointer rounded-full border border-gray-300 px-3 py-1 dark:border-gray-600">
+            Simular tema oscuro local (preview)
+          </label>
+          <span class="text-xs text-gray-500 dark:text-gray-400">
+            Activa para forzar oscuro en este bloque usando solo utilidades <code>peer-checked:</code>.
+          </span>
+        </div>
+
+        <!-- Nota: este bloque reacciona a DOS cosas:
+           1) A la clase "dark" global aplicada en <html> (via variants "dark:")
+           2) Al checkbox "peer" local (via "peer-checked:") -->
+        <div class="mt-4 rounded-xl bg-white p-6 text-gray-900 shadow transition
+                  dark:bg-gray-900 dark:text-gray-100
+                  peer-checked:bg-gray-900 peer-checked:text-gray-100">
+          <p class="text-xs font-semibold uppercase tracking-wide text-brand">Preview</p>
+          <h3 class="mt-2 text-xl font-bold">Tarjeta adaptable al tema</h3>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300 peer-checked:text-gray-300">
+            Este bloque alterna entre claro y oscuro solo con utilidades Tailwind. Úsalo como referencia mientras
+            construyes el selector real de arriba.
+          </p>
+          <div class="mt-4 flex gap-3">
+            <button class="btn btn-brand">Acción primaria</button>
+            <button class="btn border border-gray-300 text-gray-700 dark:text-gray-200
+                         dark:border-gray-700 dark:hover:bg-neutral-800">
+              Acción secundaria
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCRIPT MÍNIMO: persistencia + sincronización del <html> y del "Sistema" -->
+
+  </section>
+
+  <script>
+    // Lógica del toggle de tema con persistencia y escucha del sistema
+    (function () {
+      const STORAGE_KEY = 'theme';
+      const root = document.documentElement;
+      let mql = null; // MediaQueryList para prefers-color-scheme
+      // Aplica el tema según preferencia del sistema
+      function applySystemTheme() {
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          root.classList.add('dark');
+        } else {
+          root.classList.remove('dark');
+        }
+      }
+      // Escucha cambios del sistema
+      function onSystemChange(e) {
+        // Solo aplicamos cambios automáticos si el user ha elegido "system"
+        const saved = localStorage.getItem(STORAGE_KEY) || 'system';
+        if (saved === 'system') {
+          if (e.matches) {
+            root.classList.add('dark');
+          } else {
+            root.classList.remove('dark');
+          }
+        }
+      }
+      // Establece el tema según el valor dado
+      function setTheme(value) {
+        // Guardar preferencia
+        localStorage.setItem(STORAGE_KEY, value);
+
+        // Limpiar listener previo
+        if (mql) {
+          mql.removeEventListener('change', onSystemChange);
+          mql = null;
+        }
+
+        // Aplicar
+        if (value === 'light') {
+          root.classList.remove('dark');
+        } else if (value === 'dark') {
+          root.classList.add('dark');
+        } else {
+          // system
+          applySystemTheme();
+          mql = window.matchMedia('(prefers-color-scheme: dark)');
+          mql.addEventListener('change', onSystemChange);
+        }
+      }
+      // Inicializa el estado desde localStorage y sincroniza los radios
+      function initThemeFromStorage() {
+        const saved = localStorage.getItem(STORAGE_KEY) || 'system';
+        setTheme(saved);
+
+        // Sincronizar radios
+        const radio = document.querySelector(`input[name="theme"][value="${saved}"]`);
+        if (radio) radio.checked = true;
+      }
+
+      // Vincular eventos a los radios
+      document.querySelectorAll('input[name="theme"]').forEach((radio) => {
+        radio.addEventListener('change', (e) => {
+          const value = e.target.value;
+          setTheme(value);
+        });
+      });
+
+      // Inicializar
+      initThemeFromStorage();
+    })();
+
+    // Aplica el tema según la preferencia guardada o del sistema
+    function applyThemeClass() {
+      const saved = localStorage.getItem('theme'); // 'dark' | 'light' | null (sistema)
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const isDark = saved === 'dark' || (!saved && prefersDark);
+      document.documentElement.classList.toggle('dark', isDark);
+    }
+
+    function setTheme(mode) {
+      if (mode === 'system') {
+        localStorage.removeItem('theme');
+      } else {
+        localStorage.setItem('theme', mode);
+      }
+      applyThemeClass();
+    }
+
+    // Si cambia la preferencia del sistema y no hay tema guardado, actualiza automáticamente
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      if (!localStorage.getItem('theme')) applyThemeClass();
+    });
+  </script>
+</body>
+
+</html>

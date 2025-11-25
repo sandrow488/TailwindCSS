@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+/* Hacer que dark:* dependa de la clase .dark en el árbol */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ==========================
+   Capa de tema (tokens)
+   ========================== */
+@layer theme {
+  @theme {
+    --color-brand: #2563eb; /* azul de marca → text-brand, bg-brand, etc. */
+  }
+}
+
+/* ==========================
+   Componentes reutilizables
+   ========================== */
+@layer components {
+  .btn {
+    /* Botón base accesible y reutilizable */
+    @apply inline-flex items-center justify-center rounded-md px-4 py-2
+           font-medium shadow-sm transition;
+  }
+  .btn-brand {
+    /* Variante de marca: úsala junto a .btn en el HTML → class="btn btn-brand" */
+    @apply bg-brand text-white hover:bg-brand/90;
+  }
+
+  .card {
+    @apply p-4 bg-white rounded-lg shadow-md border border-gray-200
+           dark:bg-slate-800 dark:border-slate-700 transition;
+  }
+  .card-title {
+    @apply text-lg font-semibold mb-2;
+  }
+}

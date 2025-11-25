@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parte 2 — Setup con Vite</title>
+    <link href="/src/style.css" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-50 text-gray-800 dark:bg-gray-950 dark:text-gray-100">
+    <header class="max-w-5xl mx-auto p-4 flex items-center justify-between">
+      <a class="text-xl font-bold text-brand" href="/">Tailwind v4.1 — Tutorial</a>
+      <div class="md:hidden">
+        <button id="menu-btn" class="text-gray-600 hover:text-gray-800 focus:outline-none">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+      <nav id="menu" class="hidden md:flex text-sm flex-col md:flex-row items-center">
+        <a class="px-2 py-1 md:py-0 hover:underline" href="/index.html">Index</a>
+        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte1.html">Parte 1</a>
+        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte2.html">Parte 2</a>
+        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte3.html">Parte 3</a>
+        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte4.html">Parte 4</a>
+        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte5.html">Parte 5</a>
+        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte6.html">Parte 6</a>
+        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte7.html">Parte 7</a>
+        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte8.html">Parte 8</a>
+        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte9.html">Parte 9</a>
+        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte10.html">Parte 10</a>
+      </nav>
+    </header>
+
+    <main class="max-w-5xl mx-auto p-4 space-y-8">
+      <section>
+        <h1 class="text-3xl font-bold">Parte 2 — Setup con Vite y @apply</h1>
+        <p class="mt-2 text-gray-600 dark:text-gray-300">
+          Ya tienes Vite + Tailwind configurados. El plugin <code>@tailwindcss/vite</code> analiza tus archivos,
+          detecta las utilidades usadas y genera un CSS a medida. En <code>src/style.css</code> verás cómo definimos
+          tokens con <code>@layer theme</code> y componentes con <code>@layer components</code>.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2 class="card-title">Paso a paso — Instalar y configurar</h2>
+        <ol class="list-decimal list-inside text-sm text-gray-700 dark:text-gray-300 space-y-1">
+          <li>Crear proyecto Vite.</li>
+          <li>Instalar Tailwind y el plugin de Vite.</li>
+          <li>Registrar el plugin en <code>vite.config.mjs</code>.</li>
+          <li>Importar Tailwind en <code>src/style.css</code> y definir <code>@layer</code>.</li>
+          <li>Incluir <code>/src/style.css</code> en tu HTML.</li>
+          <li>Levantar el servidor de desarrollo.</li>
+        </ol>
+        <pre class="mt-4 p-4 bg-gray-100 dark:bg-gray-900 rounded text-xs overflow-x-auto"><code># Paso 1: crea proyecto y entra
+npm create vite@latest my-project
+cd my-project
+
+# Paso 2: instala Tailwind + plugin Vite
+npm install tailwindcss @tailwindcss/vite
+
+# Paso 3: vite.config.mjs
+import { defineConfig } from 'vite'
+import tailwindcss from '@tailwindcss/vite'
+export default defineConfig({ plugins: [tailwindcss()] })
+
+# Paso 4: src/style.css
+@import &quot;tailwindcss&quot;;                   /* importa Tailwind */
+@layer theme { @theme { --color-brand: #2563eb; } } /* token */
+@layer components {
+  .btn { @apply inline-flex items-center justify-center rounded-md px-4 py-2 font-medium shadow-sm transition; }
+  /* En v4.1 no se puede @apply una clase custom, solo utilidades. 
+     Usa .btn junto a .btn-brand en el HTML: class="btn btn-brand" */
+  .btn-brand { @apply bg-brand text-white hover:bg-brand/90; }
+}
+
+# Paso 5: enlaza el CSS en index.html
+&lt;link href=&quot;/src/style.css&quot; rel=&quot;stylesheet&quot;&gt;
+
+# Paso 6: ejecuta en dev
+npm run dev
+</code></pre>
+      </section>
+
+      <section class="card">
+        <h2 class="card-title">Botones con @apply</h2>
+        <p class="text-sm text-gray-600 dark:text-gray-300">
+          <strong>Base (.btn):</strong> define padding, radio y tipografA-a coherente para cualquier botón.
+          <strong>Primario (.btn + .btn-brand):</strong> hereda la base y añade color corporativo + hover mediante la clase extra.
+          <strong>Accesible (focus ring):</strong> reutiliza la base pero suma utilidades <code>focus:outline</code> para un anillo visible al navegar con teclado.
+        </p>
+        <!--
+          .btn: patrón base con padding, radio, tipografía y transición.
+          .btn-brand: compone .btn y añade color de marca + hover.
+        -->
+        <div class="flex flex-wrap gap-3">
+          <button class="btn">Base (.btn)</button>
+          <button class="btn btn-brand">Primario (.btn + .btn-brand)</button>
+          <button class="btn focus:outline-2 focus:outline-offset-2 focus:outline-brand">
+            Accesible (focus ring)
+          </button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="card-title">Tarjeta comentada</h2>
+        <p class="text-sm text-gray-600 dark:text-gray-300">
+          El bloque combina un <strong>logotipo</strong> redondo (imagen con <code>size-12</code>) y texto a la derecha:
+          título <strong>ChitChat</strong> destacado y subtítulo <strong>Tienes un mensaje nuevo</strong> en gris suave para marcar jerarquía.
+        </p>
+        <div
+          class="mx-auto max-w-sm           /* centra y limita ancho */
+                 flex items-center gap-x-4   /* fila y separación */
+                 rounded-xl bg-white p-6     /* radio, fondo y padding */
+                 shadow-lg outline outline-black/5 /* sombra + contorno sutil */
+                 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10"
+        >
+          <img class="size-12 shrink-0" src="https://picsum.photos/96" alt="Logotipo" />
+          <div>
+            <div class="text-xl font-medium text-black dark:text-white">ChitChat</div>
+            <p class="text-gray-500 dark:text-gray-400">Tienes un mensaje nuevo</p>
+          </div>
+        </div>
+      </section>
+    
+    <section class="card">
+      <h2 class="card-title">Ejercicio guiado - Sistema de botones con @apply</h2>
+      <p class="text-sm text-gray-600 dark:text-gray-300">
+        Refuerza la composicion de utilidades creando una familia de botones reutilizable dentro de <code>@layer components</code>.
+      </p>
+      <ol class="list-decimal list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1 mt-3">
+        <li>Declara <code>.btn</code> como base (alineacion, padding, radio, tipografia y transiciones) usando <code>@apply</code>.</li>
+        <li>Anade variantes <code>.btn-brand</code>, <code>.btn-ghost</code> y <code>.btn-danger</code> sumando colores, borders y estados <code>hover</code>.</li>
+        <li>Incluye un ring accesible con <code>focus-visible:</code> para toda la familia reutilizando utilidades en el HTML.</li>
+      </ol>
+      <div class="mt-4 rounded-lg border border-dashed border-gray-300 dark:border-gray-700 p-4">
+        <p class="text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Preview sugerido</p>
+        <div class="mt-3 flex flex-wrap gap-3">
+          <button class="btn">Base</button>
+          <button class="btn btn-brand">Primario</button>
+          <button class="btn text-brand border border-brand/30 bg-transparent">Secundario</button>
+          <button class="btn bg-red-50 text-red-600 border border-red-200 hover:bg-red-100">Alerta</button>
+        </div>
+        <p class="mt-3 text-xs text-gray-500 dark:text-gray-400">Combina clases utilitarias en el HTML solo para lo que no pueda vivir en <code>@apply</code>.</p>
+      </div>
+    </section>
+
+</main>
+    <script>
+      const menuBtn = document.getElementById('menu-btn');
+      const menu = document.getElementById('menu');
+
+      if (menuBtn) {
+        menuBtn.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
+        });
+      }
+
+      // Active link styling
+      const currentPath = window.location.pathname;
+      const navLinks = document.querySelectorAll('nav a');
+
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+          link.classList.add('font-bold', 'text-brand');
+        }
+      });
+    </script>
+  </body>
+  </html>

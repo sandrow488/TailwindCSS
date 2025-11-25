@@ -1,0 +1,507 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Parte 10 — Encargo real: Landing multiplataforma de videojuegos</title>
+  <meta name="description" content="Ejercicio final realista con Tailwind v4.1: landing de videojuegos con catálogo, filtros, calendario, ranking, formulario y FAQ. Accesible, responsiva y con buen rendimiento." />
+  <!-- Mantén tu Tailwind v4.1 compilado en /src/style.css con @theme y @layer components -->
+  <link href="/src/style.css" rel="stylesheet" />
+  <!-- Performance: hint de prioridad para el hero -->
+  <link rel="preload" as="image" href="/public/img/hero.jpg" imagesrcset="/public/img/hero.jpg 1x" fetchpriority="high">
+</head>
+
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-950 dark:text-gray-100">
+  <!-- ========================
+       HEADER / NAV
+  ========================= -->
+  <header class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between" role="banner">
+    <a class="text-xl font-bold text-brand" href="/">
+      <span class="sr-only">Inicio</span>
+      Tailwind v4.1 — Tutorial
+    </a>
+
+    <button id="menu-btn" class="md:hidden rounded-md border px-3 py-2 text-sm" aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+      Menú
+    </button>
+
+    <nav id="menu" class="hidden md:flex text-sm flex-col md:flex-row items-center" aria-label="Principal">
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/index.html">Index</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte1.html">Parte 1</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte2.html">Parte 2</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte3.html">Parte 3</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte4.html">Parte 4</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte5.html">Parte 5</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte6.html">Parte 6</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte7.html">Parte 7</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte8.html">Parte 8</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte9.html">Parte 9</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte10.html" aria-current="page">Parte 10</a>
+    </nav>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-8 space-y-12">
+
+    <!-- ========================
+         ENCARGO / CONTEXTO
+    ========================= -->
+    <section class="card" aria-labelledby="encargo-titulo">
+      <h1 id="encargo-titulo" class="card-title">
+        Encargo realista: Landing multiplataforma de videojuegos
+      </h1>
+      <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
+        Una distribuidora indie lanza un hub con novedades, torneos y guías rápidas de títulos populares.
+        Debes crear una landing que capte suscriptores y muestre catálogo por plataforma, calendario de torneos,
+        ranking de muestra, formulario para prensa/creadores y un FAQ. Entregable accesible, responsivo y con Lighthouse alto.
+      </p>
+    </section>
+
+    <!-- ========================
+         BRIEF + RESTRICCIONES
+    ========================= -->
+    <section class="card" aria-labelledby="brief-titulo">
+      <h2 id="brief-titulo" class="card-title">Brief del cliente</h2>
+      <div class="grid gap-4 md:grid-cols-2">
+        <article class="panel" aria-labelledby="obj">
+          <h3 id="obj" class="text-lg font-semibold">Objetivos</h3>
+          <ul class="mt-2 list-disc list-inside text-sm text-gray-600 dark:text-gray-300">
+            <li>Captar suscripciones a newsletter previo al lanzamiento.</li>
+            <li>Vitrina con 6–8 juegos y filtros por plataforma.</li>
+            <li>Calendario del mes en curso con fechas y formato.</li>
+            <li>Formulario para prensa y creadores con validación nativa.</li>
+            <li>FAQ con 3–5 preguntas de alta fricción (registro, precios, plataformas).</li>
+          </ul>
+        </article>
+        <article class="panel" aria-labelledby="rest">
+          <h3 id="rest" class="text-lg font-semibold">Restricciones</h3>
+          <ul class="mt-2 list-disc list-inside text-sm text-gray-600 dark:text-gray-300">
+            <li>Dark mode automático + toggle manual persistente (localStorage).</li>
+            <li>Responsive desde 360 px; 1–2–3 columnas en sm/md/lg.</li>
+            <li>Tokens en <code>@theme</code> y componentes en <code>@layer components</code> (<code>.btn</code>, <code>.chip</code>, <code>.panel</code>, <code>.table-lite</code>, <code>.cta-glow</code>).</li>
+            <li>WCAG AA: contraste, foco visible, semántica, labels.</li>
+            <li>Lighthouse ≥ 90 en Performance, Accessibility y Best Practices.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========================
+         HERO
+    ========================= -->
+    <section class="card" aria-labelledby="hero-titulo">
+      <h2 id="hero-titulo" class="card-title">Hero</h2>
+      <div class="rounded-2xl bg-gradient-to-br from-black via-gray-800 to-gray-900 p-8 text-white shadow-lg">
+        <p class="text-xs uppercase tracking-[0.35em] text-brand">Nuevo</p>
+        <h3 class="mt-2 text-3xl font-black leading-tight">Juega, compite y aprende</h3>
+        <p class="mt-2 max-w-prose text-sm text-indigo-100">
+          Un solo lugar para descubrir lanzamientos, torneos y guías rápidas. Suscríbete y recibe avisos antes que nadie.
+        </p>
+        <div class="mt-4 flex flex-wrap gap-3">
+          <button class="btn btn-primary cta-glow">Suscribirse</button>
+          <a class="btn btn-ghost" href="#catalogo">Ver catálogo</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
+         CATÁLOGO + FILTROS
+    ========================= -->
+    <section class="card" aria-labelledby="catalogo-titulo">
+      <h2 id="catalogo-titulo" class="card-title">Vitrina de juegos con filtros</h2>
+      <div class="flex flex-wrap items-center gap-2 text-sm" role="toolbar" aria-label="Filtros por plataforma">
+        <button class="chip" data-filter="all" aria-pressed="true">Todas</button>
+        <button class="chip" data-filter="pc" aria-pressed="false">PC</button>
+        <button class="chip" data-filter="ps" aria-pressed="false">PlayStation</button>
+        <button class="chip" data-filter="xbox" aria-pressed="false">Xbox</button>
+        <button class="chip" data-filter="switch" aria-pressed="false">Switch</button>
+        <button class="chip" data-filter="mobile" aria-pressed="false">Mobile</button>
+      </div>
+
+      <div id="grid-juegos" class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Cada tarjeta declara data-platform con una lista separada por comas -->
+        <article class="panel" data-platform="pc,ps,xbox,switch,mobile">
+          <img class="w-full h-36 object-cover rounded-md" src="/public/img/ph-1.jpg" alt="Artwork de Fortnite" loading="lazy">
+          <div class="mt-3">
+            <h3 class="font-semibold">Fortnite</h3>
+            <p class="text-xs text-gray-500">Battle royale</p>
+            <div class="mt-2 flex flex-wrap gap-1">
+              <span class="chip">BR</span>
+              <span class="chip">PC</span><span class="chip">PS</span><span class="chip">Xbox</span><span class="chip">Switch</span><span class="chip">Mobile</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel" data-platform="pc">
+          <img class="w-full h-36 object-cover rounded-md" src="/public/img/ph-2.jpg" alt="Artwork de Valorant" loading="lazy">
+          <div class="mt-3">
+            <h3 class="font-semibold">Valorant</h3>
+            <p class="text-xs text-gray-500">Shooter táctico</p>
+            <div class="mt-2 flex flex-wrap gap-1">
+              <span class="chip">Shooter</span><span class="chip">PC</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel" data-platform="pc,ps,xbox,switch">
+          <img class="w-full h-36 object-cover rounded-md" src="/public/img/ph-3.jpg" alt="Artwork de EA FC 25" loading="lazy">
+          <div class="mt-3">
+            <h3 class="font-semibold">EA FC 25</h3>
+            <p class="text-xs text-gray-500">Deportes</p>
+            <div class="mt-2 flex flex-wrap gap-1">
+              <span class="chip">Sports</span><span class="chip">PC</span><span class="chip">PS</span><span class="chip">Xbox</span><span class="chip">Switch</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel" data-platform="pc,ps,mobile">
+          <img class="w-full h-36 object-cover rounded-md" src="/public/img/ph-4.jpg" alt="Artwork de Genshin Impact" loading="lazy">
+          <div class="mt-3">
+            <h3 class="font-semibold">Genshin Impact</h3>
+            <p class="text-xs text-gray-500">ARPG</p>
+            <div class="mt-2 flex flex-wrap gap-1">
+              <span class="chip">ARPG</span><span class="chip">PC</span><span class="chip">PS</span><span class="chip">Mobile</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel" data-platform="multi">
+          <img class="w-full h-36 object-cover rounded-md" src="/public/img/ph-5.jpg" alt="Artwork de Minecraft" loading="lazy">
+          <div class="mt-3">
+            <h3 class="font-semibold">Minecraft</h3>
+            <p class="text-xs text-gray-500">Sandbox</p>
+            <div class="mt-2 flex flex-wrap gap-1">
+              <span class="chip">Sandbox</span><span class="chip">Multiplataforma</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel" data-platform="pc,ps,xbox,switch">
+          <img class="w-full h-36 object-cover rounded-md" src="/public/img/ph-6.jpg" alt="Artwork de Apex Legends" loading="lazy">
+          <div class="mt-3">
+            <h3 class="font-semibold">Apex Legends</h3>
+            <p class="text-xs text-gray-500">Battle royale</p>
+            <div class="mt-2 flex flex-wrap gap-1">
+              <span class="chip">BR</span><span class="chip">PC</span><span class="chip">PS</span><span class="chip">Xbox</span><span class="chip">Switch</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel" data-platform="multi">
+          <img class="w-full h-36 object-cover rounded-md" src="/public/img/ph-7.jpg" alt="Artwork de Roblox" loading="lazy">
+          <div class="mt-3">
+            <h3 class="font-semibold">Roblox</h3>
+            <p class="text-xs text-gray-500">Plataforma UGC</p>
+            <div class="mt-2 flex flex-wrap gap-1">
+              <span class="chip">UGC</span><span class="chip">Multiplataforma</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel" data-platform="pc">
+          <img class="w-full h-36 object-cover rounded-md" src="/public/img/ph-8.jpg" alt="Artwork de League of Legends" loading="lazy">
+          <div class="mt-3">
+            <h3 class="font-semibold">League of Legends</h3>
+            <p class="text-xs text-gray-500">MOBA</p>
+            <div class="mt-2 flex flex-wrap gap-1">
+              <span class="chip">MOBA</span><span class="chip">PC</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <p class="mt-3 text-xs text-gray-500">
+        Usa placeholders o imágenes libres; el objetivo es maquetación y accesibilidad.
+      </p>
+    </section>
+
+    <!-- ========================
+         CALENDARIO DEL MES
+    ========================= -->
+    <section class="card" aria-labelledby="cal-titulo">
+      <h2 id="cal-titulo" class="card-title">Calendario de torneos del mes</h2>
+      <div class="grid gap-4 md:grid-cols-2">
+        <article class="panel">
+          <h3 class="font-semibold">Próximos eventos</h3>
+          <ul class="mt-2 divide-y divide-gray-200 dark:divide-gray-800 text-sm" aria-live="polite">
+            <li class="py-2 flex items-center justify-between">
+              <span>Apex — Trios Cup</span><time class="text-gray-500" datetime="2025-11-12">12 nov</time>
+            </li>
+            <li class="py-2 flex items-center justify-between">
+              <span>EA FC — Qualifier EU</span><time class="text-gray-500" datetime="2025-11-16">16 nov</time>
+            </li>
+            <li class="py-2 flex items-center justify-between">
+              <span>LoL — Amateur Clash</span><time class="text-gray-500" datetime="2025-11-23">23 nov</time>
+            </li>
+          </ul>
+        </article>
+        <article class="panel">
+          <h3 class="font-semibold">Formato</h3>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
+            Las fechas están en formato local. Añade enlaces a bases y registro si existen.
+          </p>
+          <ul class="mt-3 text-sm list-disc list-inside">
+            <li>Inscripción gratuita</li>
+            <li>Eliminación directa</li>
+            <li>Stream opcional</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========================
+         RANKING
+    ========================= -->
+    <section class="card" aria-labelledby="rank-titulo">
+      <h2 id="rank-titulo" class="card-title">Ranking de muestra</h2>
+      <article class="panel">
+        <table class="table-lite w-full text-sm">
+          <caption class="sr-only">Tabla de ranking con posiciones y puntos</caption>
+          <thead>
+            <tr>
+              <th scope="col" class="text-left">Pos</th>
+              <th scope="col" class="text-left">Equipo</th>
+              <th scope="col" class="text-left">Juego</th>
+              <th scope="col" class="text-right">Puntos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr tabindex="0">
+              <td>1</td><td>Alpha</td><td>Valorant</td><td class="text-right">1280</td>
+            </tr>
+            <tr tabindex="0">
+              <td>2</td><td>Nova</td><td>LoL</td><td class="text-right">1190</td>
+            </tr>
+            <tr tabindex="0">
+              <td>3</td><td>Echo</td><td>EA FC 25</td><td class="text-right">950</td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+    </section>
+
+    <!-- ========================
+         FORMULARIO
+    ========================= -->
+    <section class="card" aria-labelledby="form-titulo">
+      <h2 id="form-titulo" class="card-title">Formulario para prensa y creadores</h2>
+      <form class="panel grid gap-3 md:grid-cols-2" novalidate>
+        <label class="block">
+          <span class="text-sm">Nombre</span>
+          <input required class="mt-1 w-full rounded-md border px-3 py-2" type="text" name="name" autocomplete="name" />
+        </label>
+        <label class="block">
+          <span class="text-sm">Email</span>
+          <input required class="peer mt-1 w-full rounded-md border px-3 py-2" type="email" name="email" autocomplete="email" aria-invalid="false" />
+          <small class="text-xs text-red-600 hidden peer-invalid:block">Introduce un email válido.</small>
+        </label>
+        <label class="md:col-span-2 block">
+          <span class="text-sm">Mensaje</span>
+          <textarea required class="mt-1 w-full rounded-md border px-3 py-2" rows="4" name="message"></textarea>
+        </label>
+        <button class="md:col-span-2 btn btn-primary cta-glow" type="submit">Enviar</button>
+      </form>
+    </section>
+
+    <!-- ========================
+         FAQ
+    ========================= -->
+    <section class="card" aria-labelledby="faq-titulo">
+      <h2 id="faq-titulo" class="card-title">Preguntas frecuentes</h2>
+      <div class="grid gap-3 md:grid-cols-2">
+        <details class="panel">
+          <summary class="cursor-pointer font-semibold">¿Cómo me registro a los torneos?</summary>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Desde la sección Calendario, cada torneo enlaza a su página de registro con requisitos y horarios.</p>
+        </details>
+        <details class="panel">
+          <summary class="cursor-pointer font-semibold">¿Cuánto cuesta la suscripción?</summary>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">La newsletter es gratuita. Anunciaremos planes premium opcionales más adelante.</p>
+        </details>
+        <details class="panel">
+          <summary class="cursor-pointer font-semibold">¿Qué plataformas están soportadas?</summary>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">PC, PlayStation, Xbox, Nintendo Switch y móvil. Usa los filtros del catálogo para explorar.</p>
+        </details>
+        <details class="panel">
+          <summary class="cursor-pointer font-semibold">¿Puedo enviar notas de prensa?</summary>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Sí. Usa el formulario y marca tu perfil como prensa o creador en el mensaje.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ========================
+         ACEPTACIÓN / CHECKLIST
+    ========================= -->
+    <section class="card" aria-labelledby="criterios-titulo">
+      <h2 id="criterios-titulo" class="card-title">Criterios de aceptación</h2>
+      <div class="grid gap-4 md:grid-cols-2">
+        <ul class="list-disc list-inside text-sm text-gray-700 dark:text-gray-300 space-y-1">
+          <li>Dark mode: respeta sistema y toggle manual persistente.</li>
+          <li>Tipografía y espaciado coherentes con tokens de @theme.</li>
+          <li>Focus visible en enlaces, botones y campos.</li>
+          <li>Alt significativo en imágenes.</li>
+          <li>Semántica correcta: header, main, section, nav, footer.</li>
+        </ul>
+        <ul class="list-disc list-inside text-sm text-gray-700 dark:text-gray-300 space-y-1">
+          <li>Responsive: 1, 2 y 3 columnas en sm, md, lg.</li>
+          <li>Formulario accesible con required, aria-invalid y peer-invalid.</li>
+          <li>Tabla navegable con teclado.</li>
+          <li>Fechas legibles en localización.</li>
+          <li>Lighthouse ≥ 90 en Performance, Accessibility y Best Practices.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ========================
+         ENTREGA / RÚBRICA / REPO
+    ========================= -->
+    <section class="card" aria-labelledby="entrega-titulo">
+      <h2 id="entrega-titulo" class="card-title">Entrega, rúbrica y estructura mínima</h2>
+      <div class="grid gap-4 md:grid-cols-3">
+        <article class="panel" aria-labelledby="estructura-min">
+          <h3 id="estructura-min" class="font-semibold">Estructura mínima</h3>
+          <pre class="mt-2 text-xs bg-gray-100 dark:bg-gray-900 p-3 rounded-lg overflow-auto"><code>landing/
+├─ index.html
+├─ src/
+│  ├─ style.css  (Tailwind v4.1 con @theme y @layer components)
+│  └─ main.js    (toggle tema, filtros, mejoras de accesibilidad)
+└─ public/
+   └─ img/       (placeholders)</code></pre>
+        </article>
+        <article class="panel" aria-labelledby="rubrica">
+          <h3 id="rubrica" class="font-semibold">Rúbrica (0–10)</h3>
+          <ul class="mt-2 list-disc list-inside text-sm">
+            <li>Estructura y semántica: 2</li>
+            <li>Vitrina y componentes: 2</li>
+            <li>Accesibilidad y formulario: 2</li>
+            <li>Responsive y dark mode: 2</li>
+            <li>Rendimiento y orden del código: 2</li>
+          </ul>
+        </article>
+        <article class="panel" aria-labelledby="publicacion">
+          <h3 id="publicacion" class="font-semibold">Publicación</h3>
+          <p class="text-sm">Sube a GitHub y activa Pages. Incluye un README con:</p>
+          <ul class="mt-2 list-disc list-inside text-sm">
+            <li>Resumen del encargo y capturas.</li>
+            <li>Cómo ejecutar localmente.</li>
+            <li>Decisiones de accesibilidad.</li>
+            <li>Enlace a la demo.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========================
+         COMPROBADOR DE CONTRASTE
+    ========================= -->
+    <section class="card" aria-labelledby="contraste-titulo">
+      <h2 id="contraste-titulo" class="card-title">Comprobador de contraste</h2>
+      <div class="mt-3 flex items-center gap-3 text-sm font-semibold">
+        <input type="checkbox" id="preview-dark" class="peer sr-only" />
+        <label for="preview-dark" class="cursor-pointer rounded-full border border-gray-300 px-3 py-1 dark:border-gray-600">
+          Simular tema oscuro
+        </label>
+        <span class="text-xs text-gray-500 dark:text-gray-400">Activa para revisar contrastes rápidamente.</span>
+      </div>
+      <article class="mt-3 rounded-2xl bg-white p-6 text-gray-900 shadow transition peer-checked:bg-gray-900 peer-checked:text-gray-100">
+        <header class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.3em] text-brand">Vista previa</p>
+            <h3 class="text-2xl font-black">Landing Hub</h3>
+          </div>
+          <span class="chip inline-flex items-center gap-2 rounded-full bg-brand/10 px-3 py-1 text-xs font-semibold text-brand">Beta</span>
+        </header>
+        <p class="mt-3 text-sm text-gray-600 peer-checked:text-gray-300">
+          Aplica utilidades para spacing, tipografía y color. Usa md:grid-cols-2 y gap-6 donde corresponda.
+        </p>
+      </article>
+    </section>
+
+    <footer class="max-w-6xl mx-auto px-4 py-10 text-center text-xs text-gray-500" role="contentinfo">
+      Parte 10 · Encargo real · Tailwind v4.1
+    </footer>
+  </main>
+
+  <script>
+    // ===========================
+    // Menú responsive con ARIA
+    // ===========================
+    const menuBtn = document.getElementById('menu-btn');
+    const menu = document.getElementById('menu');
+    if (menuBtn && menu) {
+      menuBtn.addEventListener('click', () => {
+        const isHidden = menu.classList.toggle('hidden');
+        menuBtn.setAttribute('aria-expanded', String(!isHidden));
+      });
+    }
+
+    // Enlace activo
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('nav a').forEach((link) => {
+      if (link.getAttribute('href') === currentPath) {
+        link.classList.add('font-bold', 'text-brand');
+        link.setAttribute('aria-current', 'page');
+      }
+    });
+
+    // ===========================
+    // Filtros del catálogo
+    // ===========================
+    const filterBar = document.querySelector('[role="toolbar"]');
+    const cards = Array.from(document.querySelectorAll('#grid-juegos [data-platform]'));
+
+    function applyFilter(value) {
+      cards.forEach(card => {
+        const platforms = (card.getAttribute('data-platform') || '').toLowerCase();
+        const show = value === 'all'
+          ? true
+          : (platforms === 'multi' || platforms.split(',').map(s => s.trim()).includes(value));
+        card.classList.toggle('hidden', !show);
+      });
+    }
+
+    if (filterBar) {
+      filterBar.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-filter]');
+        if (!btn) return;
+        const value = btn.getAttribute('data-filter');
+
+        // aria-pressed
+        filterBar.querySelectorAll('[data-filter]').forEach(b => b.setAttribute('aria-pressed', 'false'));
+        btn.setAttribute('aria-pressed', 'true');
+
+        applyFilter(value);
+      });
+    }
+
+    // ===========================
+    // Simulador de tema local del comprobador de contraste
+    // (solo para el preview de esa sección; no altera <html>)
+    // ===========================
+    const previewDark = document.getElementById('preview-dark');
+    if (previewDark) {
+      previewDark.addEventListener('change', (e) => {
+        const section = e.target.closest('section');
+        const article = section ? section.querySelector('article') : null;
+        if (article) {
+          // Emula peer-checked: utilidades ya aplican el cambio, esto solo fuerza el primer estado inmediato
+          article.classList.toggle('bg-white', !e.target.checked);
+          article.classList.toggle('text-gray-900', !e.target.checked);
+          article.classList.toggle('bg-gray-900', e.target.checked);
+          article.classList.toggle('text-gray-100', e.target.checked);
+        }
+      });
+    }
+
+    // ===========================
+    // Accesibilidad mínima del formulario
+    // ===========================
+    document.querySelector('form')?.addEventListener('submit', (e) => {
+      const email = e.currentTarget.querySelector('input[type="email"]');
+      if (email && !email.checkValidity()) {
+        e.preventDefault();
+        email.setAttribute('aria-invalid', 'true');
+        email.focus();
+      }
+    });
+  </script>
+</body>
+</html>
