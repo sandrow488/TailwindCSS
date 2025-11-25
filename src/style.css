@@ -1,36 +1,55 @@
 @import "tailwindcss";
 
-/* Hacer que dark:* dependa de la clase .dark en el árbol */
-@custom-variant dark (&:where(.dark, .dark *));
-
-/* ==========================
-   Capa de tema (tokens)
-   ========================== */
+/* === PARTE 4: TOKENS DEL TEMA === */
 @layer theme {
   @theme {
-    --color-brand: #2563eb; /* azul de marca → text-brand, bg-brand, etc. */
+    --color-brand: #2563eb;
+    --radius-card: 0.75rem;
+    --shadow-card: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   }
 }
 
-/* ==========================
-   Componentes reutilizables
-   ========================== */
+/* === PARTE 2 & 4: COMPONENTES (@apply) === */
 @layer components {
+  /* Botón Base */
   .btn {
-    /* Botón base accesible y reutilizable */
-    @apply inline-flex items-center justify-center rounded-md px-4 py-2
-           font-medium shadow-sm transition;
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-md font-medium transition shadow-sm 
+           focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand;
   }
+  
+  /* Variantes de botones (Ejercicio Parte 2) */
   .btn-brand {
-    /* Variante de marca: úsala junto a .btn en el HTML → class="btn btn-brand" */
-    @apply bg-brand text-white hover:bg-brand/90;
+    @apply bg-brand text-white hover:brightness-90;
+  }
+  .btn-ghost {
+    @apply bg-transparent text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800;
+  }
+  .btn-danger {
+    @apply bg-red-50 text-red-600 border border-red-200 hover:bg-red-100 dark:bg-red-900/20 dark:text-red-300 dark:border-red-800 dark:hover:bg-red-900/40;
   }
 
+  /* Componentes del Ejercicio Parte 4 */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-brand/10 text-brand;
+  }
+  .panel {
+    @apply bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 shadow rounded-[var(--radius-card)] p-4;
+  }
+
+  /* Utilidades extra para otros ejercicios */
   .card {
-    @apply p-4 bg-white rounded-lg shadow-md border border-gray-200
-           dark:bg-slate-800 dark:border-slate-700 transition;
+    @apply p-6 bg-white rounded-lg shadow-md border border-gray-200 dark:bg-slate-900 dark:border-gray-800;
   }
   .card-title {
-    @apply text-lg font-semibold mb-2;
+    @apply text-xl font-bold text-gray-900 dark:text-gray-100 mb-4;
+  }
+  .chip {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200 hover:bg-brand/10 hover:text-brand cursor-pointer transition-colors;
+  }
+  .chip[aria-pressed="true"] {
+    @apply bg-brand text-white;
+  }
+  .cta-glow {
+    @apply shadow-[0_0_15px_rgba(37,99,235,0.3)] hover:shadow-[0_0_20px_rgba(37,99,235,0.5)];
   }
 }

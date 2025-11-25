@@ -135,36 +135,21 @@
         <li>Usa variantes <code>dark:</code> para comprobar contraste y accesibilidad.</li>
       </ol>
 
-      <div class="mt-4 border border-dashed border-gray-300 dark:border-gray-700 rounded-lg p-4 space-y-4">
-        <div class="flex items-center gap-2 text-sm font-medium">
-          <input type="checkbox" id="hero-preview-toggle" class="peer sr-only" />
-          <label for="hero-preview-toggle"
-            class="px-3 py-1 rounded-full border border-gray-300 dark:border-gray-600 cursor-pointer">
-            Simular modo oscuro local
-          </label>
-          <span class="text-xs text-gray-500 dark:text-gray-400">
-            Actívalo para ver en acción las clases <code>dark:</code>.
-          </span>
-        </div>
-
-        <div class="p-8 rounded-xl bg-white text-gray-900 shadow transition
-                      peer-checked:bg-gray-950 peer-checked:text-gray-100">
-          <p class="text-xs font-semibold tracking-wide text-brand uppercase">Lanzamiento</p>
-          <h3 class="mt-2 text-3xl font-extrabold leading-tight">Construye tu primer diseño con utilidades</h3>
-          <p class="mt-3 max-w-prose text-sm text-gray-600 peer-checked:text-gray-300">
-            Define un token de marca, usa <code>text-brand</code> y combina utilidades (<code>p</code>,
-            <code>gap</code>,
-            <code>max-w</code>) para estructurar el contenido.
-          </p>
-          <div class="mt-6 flex flex-wrap gap-3">
-            <button class="btn btn-brand">Empezar ahora</button>
-            <a href="https://tailwindcss.com/docs" target="_blank"
-              class="btn border border-brand/40 text-brand bg-transparent hover:bg-brand/10">
-              Ver documentación
-            </a>
-          </div>
-        </div>
+    <div class="rounded-xl bg-white dark:bg-gray-900 p-8 shadow-lg border border-gray-200 dark:border-gray-800">
+      <p class="text-brand font-bold tracking-wide text-xs uppercase">Nuevo Curso</p>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white">
+        Domina Tailwind CSS v4.1
+      </h1>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-prose">
+        Aprende a construir interfaces modernas utilizando tokens de diseño, componentes reutilizables y el nuevo motor ultrarrápido.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-4">
+        <button class="btn btn-brand">Empezar ahora</button>
+        <button class="btn border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800">
+          Ver temario
+        </button>
       </div>
+    </div>
     </section>
   </main>
 
