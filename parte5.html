@@ -9,29 +9,29 @@
 </head>
 
 <body class="bg-gray-50 text-gray-800 dark:bg-gray-950 dark:text-gray-100">
-    <header class="max-w-5xl mx-auto p-4 flex items-center justify-between">
-      <a class="text-xl font-bold text-brand" href="/">Tailwind v4.1 — Tutorial</a>
-      <div class="md:hidden">
-        <button id="menu-btn" class="text-gray-600 hover:text-gray-800 focus:outline-none">
-          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-          </svg>
-        </button>
-      </div>
-      <nav id="menu" class="hidden md:flex text-sm flex-col md:flex-row items-center">
-        <a class="px-2 py-1 md:py-0 hover:underline" href="/index.html">Index</a>
-        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte1.html">Parte 1</a>
-        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte2.html">Parte 2</a>
-        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte3.html">Parte 3</a>
-        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte4.html">Parte 4</a>
-        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte5.html">Parte 5</a>
-        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte6.html">Parte 6</a>
-        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte7.html">Parte 7</a>
-        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte8.html">Parte 8</a>
-        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte9.html">Parte 9</a>
-        <a class="px-2 py-1 md:py-0 hover:underline" href="/parte10.html">Parte 10</a>
-      </nav>
-    </header>
+  <header class="max-w-5xl mx-auto p-4 flex items-center justify-between">
+    <a class="text-xl font-bold text-brand" href="/">Tailwind v4.1 — Tutorial</a>
+    <div class="md:hidden">
+      <button id="menu-btn" class="text-gray-600 hover:text-gray-800 focus:outline-none">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+    </div>
+    <nav id="menu" class="hidden md:flex text-sm flex-col md:flex-row items-center">
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/index.html">Index</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte1.html">Parte 1</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte2.html">Parte 2</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte3.html">Parte 3</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte4.html">Parte 4</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte5.html">Parte 5</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte6.html">Parte 6</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte7.html">Parte 7</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte8.html">Parte 8</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte9.html">Parte 9</a>
+      <a class="px-2 py-1 md:py-0 hover:underline" href="/parte10.html">Parte 10</a>
+    </nav>
+  </header>
 
   <main class="max-w-5xl mx-auto p-4 space-y-8">
     <section>
@@ -53,7 +53,8 @@
         </button>
       </div>
       <p class="mt-3 text-xs text-gray-600 dark:text-gray-300">Coloca <code>group</code> en el contenedor y usa
-        <code>group-hover:</code> en los hijos para reaccionar al estado del padre.</p>
+        <code>group-hover:</code> en los hijos para reaccionar al estado del padre.
+      </p>
     </section>
 
     <section class="card">
@@ -68,7 +69,8 @@
         </p>
       </div>
       <p class="mt-3 text-xs text-gray-600 dark:text-gray-300">El estado <code>invalid:</code> del input con clase
-        <code>peer</code> controla la visibilidad del mensaje mediante <code>peer-invalid:visible</code>.</p>
+        <code>peer</code> controla la visibilidad del mensaje mediante <code>peer-invalid:visible</code>.
+      </p>
     </section>
 
     <section class="card">
@@ -107,104 +109,115 @@
 
 
 
-<section class="card">
-  <h2 class="card-title">Ejercicio guiado — Tarjeta de suscripción interactiva</h2>
-  <p class="text-sm text-gray-600 dark:text-gray-300">
-    En este ejercicio vas a crear un pequeño formulario dentro de una tarjeta visual. Usarás varias características de Tailwind CSS para conseguir efectos de interacción sin necesidad de JavaScript.<br>
-    La tarjeta cambiará de estilo en función de estados como <strong>hover</strong>, <strong>invalid</strong> y <strong>aria-expanded</strong>, y además reorganizará su layout en función del ancho del propio componente (consultas por contenedor).
-  </p>
-
-  <h3 class="mt-4 font-semibold text-gray-700 dark:text-gray-200">Objetivos del ejercicio</h3>
-  <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1 mt-2">
-    <li>Aprender a usar <code>group</code> para que los elementos hijos reaccionen al estado <code>hover</code> del contenedor.</li>
-    <li>Validar emails con HTML5 y mostrar mensajes de error con ayuda de <code>peer</code> + <code>peer-invalid:</code>.</li>
-    <li>Estilizar un botón en función del atributo <code>aria-expanded</code> sin necesidad de escribir JavaScript.</li>
-    <li>Controlar el layout de la tarjeta según su propio ancho usando <code>@container</code> + <code>@md:</code>.</li>
-  </ul>
-
-  <h3 class="mt-4 font-semibold text-gray-700 dark:text-gray-200">Instrucciones paso a paso</h3>
-  <ol class="list-decimal list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1 mt-3">
-    <li>
-      Envuelve toda la tarjeta dentro de un elemento con clase <code>group</code>. Esto te permite animar algunas partes internas usando clases como <code>group-hover:</code>.
-    </li>
-    <li>
-      Crea un <code>&lt;input type="email"&gt;</code> con clase <code>peer</code>. Si el email está mal formateado, el input activará el estado <code>invalid:</code>, y podrás mostrar un mensaje de error usando <code>peer-invalid:visible</code>.
-    </li>
-    <li>
-      Añade un botón con el atributo <code>aria-expanded="false"</code>. Usa clases como <code>aria-expanded:text-brand</code> para estilizarlo según el valor del atributo.
-    </li>
-    <li>
-      Añade la utilidad <code>@container</code> al contenedor principal de la tarjeta. Luego usa <code>@md:</code> para cambiar a un layout horizontal cuando el ancho mínimo del contenedor sea suficiente (sin necesitar <code>@media</code> del viewport).
-    </li>
-  </ol>
-
-  <div class="mt-4 border border-dashed border-gray-300 dark:border-gray-700 rounded-lg p-4">
-    <div
-      class="@container group rounded-xl bg-white dark:bg-slate-900 
-                 border border-gray-200 dark:border-gray-800 p-4 shadow transition
-                 hover:border-brand/50">
-      <div class="flex items-center justify-between">
-        <p class="text-sm font-semibold text-gray-700 dark:text-gray-200">Brief semanal</p>
-        <span
-          class="inline-flex items-center gap-1 rounded-full bg-brand/10 text-brand px-3 py-1 text-xs font-semibold
-                         transition group-hover:bg-brand group-hover:text-white">
-          Nuevo
-        </span>
-      </div>
-
-      <div class="mt-4 @md:flex @md:items-center @md:gap-4">
-        <input type="email"
-          class="peer w-full rounded-md border border-gray-300 dark:border-gray-700 bg-transparent 
-                       px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand
-                       invalid:border-red-500"
-          placeholder="tu@email.com" required />
-
-        <button class="mt-3 @md:mt-0 btn btn-brand">Suscribirme</button>
-      </div>
-
-      <p class="mt-2 text-sm text-red-600 invisible peer-invalid:visible">
-        Revisa el formato del correo.
+    <section class="card">
+      <h2 class="card-title">Ejercicio guiado — Tarjeta de suscripción interactiva</h2>
+      <p class="text-sm text-gray-600 dark:text-gray-300">
+        En este ejercicio vas a crear un pequeño formulario dentro de una tarjeta visual. Usarás varias características
+        de Tailwind CSS para conseguir efectos de interacción sin necesidad de JavaScript.<br>
+        La tarjeta cambiará de estilo en función de estados como <strong>hover</strong>, <strong>invalid</strong> y
+        <strong>aria-expanded</strong>, y además reorganizará su layout en función del ancho del propio componente
+        (consultas por contenedor).
       </p>
 
-      <button aria-expanded="false"
-        class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-200
-                       aria-expanded:text-brand">
-        <span class="size-2 rounded-full bg-current"></span>
-        Detalles de privacidad
-      </button>
-    </div>
-  </div>
+      <h3 class="mt-4 font-semibold text-gray-700 dark:text-gray-200">Objetivos del ejercicio</h3>
+      <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1 mt-2">
+        <li>Aprender a usar <code>group</code> para que los elementos hijos reaccionen al estado <code>hover</code> del
+          contenedor.</li>
+        <li>Validar emails con HTML5 y mostrar mensajes de error con ayuda de <code>peer</code> +
+          <code>peer-invalid:</code>.</li>
+        <li>Estilizar un botón en función del atributo <code>aria-expanded</code> sin necesidad de escribir JavaScript.
+        </li>
+        <li>Controlar el layout de la tarjeta según su propio ancho usando <code>@container</code> + <code>@md:</code>.
+        </li>
+      </ul>
 
-  <h3 class="mt-4 font-semibold text-gray-700 dark:text-gray-200">Para comprobar que funciona correctamente:</h3>
-  <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1 mt-2">
-    <li>Pasa el ratón por encima de la tarjeta: el badge “Nuevo” debería cambiar de color automáticamente gracias a <code>group-hover:</code>.</li>
-    <li>Introduce un email incorrecto: el mensaje de error debería aparecer gracias a <code>peer-invalid:visible</code>.</li>
-    <li>Reduce o aumenta el ancho de la tarjeta: observa cómo cambia entre disposición vertical y horizontal con <code>@md:</code> y <code>@container</code>.</li>
-    <li>Comprueba cómo cambia el botón si modificas <code>aria-expanded</code> de “false” a “true” manualmente en el HTML.</li>
-  </ul>
-</section>
+      <h3 class="mt-4 font-semibold text-gray-700 dark:text-gray-200">Instrucciones paso a paso</h3>
+      <ol class="list-decimal list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1 mt-3">
+        <li>
+          Envuelve toda la tarjeta dentro de un elemento con clase <code>group</code>. Esto te permite animar algunas
+          partes internas usando clases como <code>group-hover:</code>.
+        </li>
+        <li>
+          Crea un <code>&lt;input type="email"&gt;</code> con clase <code>peer</code>. Si el email está mal formateado,
+          el input activará el estado <code>invalid:</code>, y podrás mostrar un mensaje de error usando
+          <code>peer-invalid:visible</code>.
+        </li>
+        <li>
+          Añade un botón con el atributo <code>aria-expanded="false"</code>. Usa clases como
+          <code>aria-expanded:text-brand</code> para estilizarlo según el valor del atributo.
+        </li>
+        <li>
+          Añade la utilidad <code>@container</code> al contenedor principal de la tarjeta. Luego usa <code>@md:</code>
+          para cambiar a un layout horizontal cuando el ancho mínimo del contenedor sea suficiente (sin necesitar
+          <code>@media</code> del viewport).
+        </li>
+      </ol>
+
+      <div class="@container group p-5 rounded-xl border border-gray-200 dark:border-gray-800 
+            bg-white dark:bg-slate-900 shadow-sm hover:shadow-md transition-shadow">
+
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="font-bold text-gray-900 dark:text-white">Newsletter</h3>
+          <span class="badge bg-gray-100 text-gray-600 group-hover:bg-brand group-hover:text-white transition-colors">
+            Semanal
+          </span>
+        </div>
+
+        <form class="space-y-3" onsubmit="event.preventDefault();">
+          <label class="block">
+            <span class="sr-only">Email</span>
+            <input type="email" required placeholder="tu@email.com" class="peer w-full rounded-md border border-gray-300 px-3 py-2 text-sm
+                    invalid:border-red-500 focus:outline-none focus:ring-2 focus:ring-brand/50
+                    dark:bg-slate-800 dark:border-gray-700" />
+
+            <p class="mt-1 text-xs text-red-500 invisible peer-invalid:visible">
+              Por favor, introduce un correo válido.
+            </p>
+          </label>
+
+          <button type="button" aria-expanded="false"
+            onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false')" class="text-sm font-medium text-gray-500 hover:text-gray-900 dark:hover:text-gray-100
+                   aria-expanded:text-brand aria-expanded:font-bold transition-colors">
+            Ver política de privacidad
+          </button>
+        </form>
+      </div>
+
+      <h3 class="mt-4 font-semibold text-gray-700 dark:text-gray-200">Para comprobar que funciona correctamente:</h3>
+      <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-300 space-y-1 mt-2">
+        <li>Pasa el ratón por encima de la tarjeta: el badge “Nuevo” debería cambiar de color automáticamente gracias a
+          <code>group-hover:</code>.</li>
+        <li>Introduce un email incorrecto: el mensaje de error debería aparecer gracias a
+          <code>peer-invalid:visible</code>.</li>
+        <li>Reduce o aumenta el ancho de la tarjeta: observa cómo cambia entre disposición vertical y horizontal con
+          <code>@md:</code> y <code>@container</code>.</li>
+        <li>Comprueba cómo cambia el botón si modificas <code>aria-expanded</code> de “false” a “true” manualmente en el
+          HTML.</li>
+      </ul>
+    </section>
 
 
-</main>
-    <script>
-      const menuBtn = document.getElementById('menu-btn');
-      const menu = document.getElementById('menu');
+  </main>
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const menu = document.getElementById('menu');
 
-      if (menuBtn) {
-        menuBtn.addEventListener('click', () => {
-          menu.classList.toggle('hidden');
-        });
-      }
-
-      // Active link styling
-      const currentPath = window.location.pathname;
-      const navLinks = document.querySelectorAll('nav a');
-
-      navLinks.forEach(link => {
-        if (link.getAttribute('href') === currentPath) {
-          link.classList.add('font-bold', 'text-brand');
-        }
+    if (menuBtn) {
+      menuBtn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
       });
-    </script>
-  </body>
+    }
+
+    // Active link styling
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('nav a');
+
+    navLinks.forEach(link => {
+      if (link.getAttribute('href') === currentPath) {
+        link.classList.add('font-bold', 'text-brand');
+      }
+    });
+  </script>
+</body>
+
 </html>

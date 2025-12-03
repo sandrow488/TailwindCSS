@@ -133,29 +133,24 @@
       - dark:* → estilos cuando el documento está en modo oscuro.
       - focus-visible:* → anillo de enfoque solo cuando navegas con teclado (accesible).
     -->
-        <article class="group flex flex-col md:flex-row items-start md:items-center gap-4 p-4 rounded-lg
+        <article class="group flex flex-col md:flex-row items-center gap-4 p-4 rounded-lg
              bg-white dark:bg-slate-900
              border border-gray-200 dark:border-gray-800
              hover:border-brand/60 dark:hover:border-brand/60
-             transition">
-          <div class="flex-1">
-            <p class="text-xs font-semibold tracking-wide text-brand uppercase">Estado beta</p>
-            <h3 class="mt-2 text-xl font-bold">Dashboard adaptable</h3>
+             transition duration-300">
+
+          <div class="flex-1 text-center md:text-left">
+            <p class="text-xs font-bold tracking-wide text-brand uppercase mb-1">Nuevo Curso</p>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Diseño Adaptativo</h3>
             <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
-              Combina <code>sm:</code>/<code>md:</code> con estados de interacción para lograr feedback claro en
-              cualquier tamaño.
+              Aprende a usar variantes como `hover`, `focus` y `md` para crear interfaces vivas.
             </p>
           </div>
 
-          <!-- CTA accesible:
-           - focus-visible:outline-* para anillo cuando navegas con teclado.
-           - active:-translate-y-0.5 y md:active:scale-95 para microinteracciones.
-           - group-hover:underline muestra cómo reaccionar al hover del contenedor. -->
-          <button type="button" class="self-start md:self-center btn btn-brand
-               focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand
-               active:-translate-y-0.5 md:active:scale-95
-               transition transform">
-            <span class="group-hover:underline">Probar demo</span>
+          <button class="btn btn-brand
+                        focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand
+                        active:scale-95 transition-transform">
+            <span class="group-hover:underline">Empezar ahora</span>
           </button>
         </article>
       </div>
