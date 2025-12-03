@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tamagotchi Grande y Limpio</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 text-gray-800 flex items-center justify-center min-h-screen font-sans p-4">
+    <div id="app" class="w-full max-w-lg"></div>
+
+    <script type="text/babel">
+
+        const { useState, useEffect } = React;
+        const clamp = (v) => Math.min(100, Math.max(0, v));
+
+        function Bar({ nombre, valor }) {
+            return (
+                <div className="w-full mb-6">
+                    <div className="flex justify-between items-end mb-2">
+                        <span className="text-lg font-bold text-gray-700 uppercase tracking-wider">
+                            {nombre}
+                        </span>
+                        <span className="text-lg font-bold text-gray-500">
+                            {Math.round(valor)}%
+                        </span>
+                    </div>
+                    <div className="w-full h-6 bg-gray-200 rounded-full overflow-hidden">
+                        <div
+                            className="h-full rounded-full transition-all duration-500 bg-indigo-500"
+                            style={{ width: `${valor}%` }}
+                        ></div>
+                    </div>
+                </div>
+            );
+        }
+
+        function Tamagotchi() {
+            const [hambre, setHambre] = useState(80);
+            const [felicidad, setFelicidad] = useState(80);
+            const [salud, setSalud] = useState(80);
+            const [animo, setAnimo] = useState("happy");
+            const [ultima, setUltima] = useState("Esperando acciones...");
+
+            const calcularAnimo = (h, f, s) => {
+                const avg = (h + f + s) / 3;
+                if (avg > 85) return "radiant";
+                if (avg > 70) return "happy";
+                if (avg > 50) return "ok";
+                if (avg > 30) return "hungry";
+                return "sad";
+            };
+
+            const obtenerAvatar = (estado) => {
+                switch (estado) {
+                    case "radiant": return "🤩";
+                    case "happy": return "🙂";
+                    case "ok": return "😐";
+                    case "hungry": return "😫";
+                    case "sad": return "🤢";
+                    default: return "🙂";
+                }
+            };
+
+            useEffect(() => {
+                const timer = setInterval(() => {
+                    setHambre(h => clamp(h - 5));
+                    setFelicidad(f => clamp(f - 4));
+                    setSalud(s => clamp(s - 3));
+                }, 3000);
+                return () => clearInterval(timer);
+            }, []);
+
+            useEffect(() => {
+                setAnimo(calcularAnimo(hambre, felicidad, salud));
+            }, [hambre, felicidad, salud]);
+
+            const feed = () => {
+                setHambre(h => clamp(h + 15));
+                setSalud(s => clamp(s + 5));
+                setUltima("Comiendo");
+            };
+
+            const play = () => {
+                setFelicidad(f => clamp(f + 20));
+                setSalud(s => clamp(s - 5));
+                setUltima("Jugando");
+            };
+
+            const sleep = () => {
+                setSalud(s => clamp(s + 20));
+                setHambre(h => clamp(h - 10));
+                setUltima("Durmiendo");
+            };
+
+            const reset = () => {
+                setHambre(80); setFelicidad(80); setSalud(80);
+                setAnimo("happy"); setUltima("Reiniciado");
+            };
+
+            return (
+                <div className="bg-white rounded-3xl shadow-xl overflow-hidden p-8">
+
+                    <div className="text-center mb-8">
+                        <div className="text-9xl mb-4 animate-bounce">
+                            {obtenerAvatar(animo)}
+                        </div>
+
+                        <p className="text-xl text-gray-500 font-medium">{ultima}</p>
+                    </div>
+
+
+                    <div className="mb-8 space-y-4">
+                        <Bar nombre="Energía" valor={hambre} />
+                        <Bar nombre="Diversión" valor={felicidad} />
+                        <Bar nombre="Salud" valor={salud} />
+                    </div>
+
+
+                    <div className="grid grid-cols-3 gap-4 mb-6">
+
+                        <button onClick={feed} className="py-4 bg-gray-100 hover:bg-gray-200 rounded-2xl text-lg font-bold text-gray-700 transition-colors">
+                            Alimentar
+                        </button>
+                        <button onClick={play} className="py-4 bg-gray-100 hover:bg-gray-200 rounded-2xl text-lg font-bold text-gray-700 transition-colors">
+                            Jugar
+                        </button>
+                        <button onClick={sleep} className="py-4 bg-gray-100 hover:bg-gray-200 rounded-2xl text-lg font-bold text-gray-700 transition-colors">
+                            Dormir
+                        </button>
+                    </div>
+
+
+                    <button onClick={reset} className="w-full py-4 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 rounded-2xl text-lg font-bold transition-colors tracking-wider">
+                        Reiniciar juego
+                    </button>
+                </div>
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById("app")).render(<Tamagotchi />);
+
+    </script>
+</body>
+
+</html>
